@@ -5,6 +5,8 @@ header {
     flex-direction: column;
     background-color: s.$theme;
     padding: 10px 0;
+    grid-area: header;
+
     nav {
         display: flex;
         align-items: center;
@@ -45,13 +47,12 @@ header {
                     color: inherit;
                     opacity: 1;
                 }
-                
+
                 &::-webkit-search-decoration,
                 &::-webkit-search-cancel-button,
                 &::-webkit-search-results-button,
                 &::-webkit-search-results-decoration { display: none; }
             }
-
         }
     }
 }

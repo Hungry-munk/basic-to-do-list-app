@@ -1,0 +1,18 @@
+@use "./shared" as s;
+
+footer {
+    @include s.flexCenter;
+    gap: 15px;
+    padding: 7px 0;
+    background-color: s.$theme;
+
+    a {
+        color: black;
+        &:hover {
+            cursor: pointer;
+            transform: rotate(360deg) scale(1.2);
+        }
+
+       > i {transform: scale(1.3)}
+    }
+}
