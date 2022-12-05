@@ -1,0 +1,57 @@
+@use "./shared" as s;
+
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: s.$theme;
+    padding: 10px 0;
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-left: 40px;
+        .menuIcon {
+            color: s.$white;
+            transform: scale(1.1);
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .searchContainer {
+            display: flex;
+            gap: 5px;
+            padding: 2px;
+            border-radius: 4px ; 
+            background-color: rgba($color: #ebebeb, $alpha: 0.4);
+            color: s.$white;
+
+            label {
+                @include s.flexCenter;
+                cursor: pointer;
+
+                span {
+                    transform: scale(0.8);
+                }
+            }
+
+            input {
+                background-color: transparent;
+                border: none;
+                outline: none;
+                color: inherit;
+                
+                &::placeholder {
+                    color: inherit;
+                    opacity: 1;
+                }
+                
+                &::-webkit-search-decoration,
+                &::-webkit-search-cancel-button,
+                &::-webkit-search-results-button,
+                &::-webkit-search-results-decoration { display: none; }
+            }
+
+        }
+    }
+}

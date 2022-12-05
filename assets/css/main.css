@@ -1,3 +1,53 @@
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #AE3932;
+  padding: 10px 0;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 40px;
+}
+header nav .menuIcon {
+  color: #eEebeb;
+  transform: scale(1.1);
+}
+header nav .menuIcon:hover {
+  cursor: pointer;
+}
+header nav .searchContainer {
+  display: flex;
+  gap: 5px;
+  padding: 2px;
+  border-radius: 4px;
+  background-color: rgba(235, 235, 235, 0.4);
+  color: #eEebeb;
+}
+header nav .searchContainer label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+header nav .searchContainer label span {
+  transform: scale(0.8);
+}
+header nav .searchContainer input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+}
+header nav .searchContainer input::placeholder {
+  color: inherit;
+  opacity: 1;
+}
+header nav .searchContainer input::-webkit-search-decoration, header nav .searchContainer input::-webkit-search-cancel-button, header nav .searchContainer input::-webkit-search-results-button, header nav .searchContainer input::-webkit-search-results-decoration {
+  display: none;
+}
+
 *::after, *::before, * {
   box-sizing: border-box;
   margin: 0;
