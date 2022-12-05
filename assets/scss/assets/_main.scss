@@ -1,0 +1,23 @@
+@use "./shared" as s;
+
+main#main {
+    display: flex;
+    position: relative;
+
+    aside {
+        width: clamp(250px,33vw,375px);
+        background-color: rgba(s.$gray, 0.8);
+        padding: 1rem;
+    }
+
+    @media only screen and (max-width:768px) { //tablet size
+        aside {
+            position: absolute;
+            left: -375px;
+            height: 100%;
+            transition: linear 0.5s;
+            max-width: clamp(250px,50vw,375px);
+            &.active {left: 0}
+        }
+    }
+}
