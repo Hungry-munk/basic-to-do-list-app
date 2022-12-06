@@ -3,13 +3,33 @@
 main#main {
     display: flex;
     position: relative;
+    div.taskContainer {
+        width: 100%;
+    }
+
+    &.menuIsNotActive {
+        div.taskContainer {
+            width: 100vw;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        aside {
+            transform: translateX(-100%);
+        }   
+    }
 
     aside {
-        width: clamp(250px,33vw,375px);
-        background-color: rgba(s.$gray, 0.8);
+        width: clamp(265px,40vw,375px);
+        background-color: s.$gray;
         padding: 2rem 1.5rem ;
         @include s.flexColoumn;
         gap: 25px;
+        height: 100%;
+
+
 
         // sidebar stuff
         ul.primarySelectors {
@@ -32,10 +52,12 @@ main#main {
                 gap: 10px;
                 margin-bottom: 10px;
 
-                &.active {.fa-solid{
+                &.active {
+                    .fa-solid{
                         transition: 0.2s ease-in-out;
                         transform: rotate(180deg);        
-                    }}
+                    }
+                }
 
                 padding: 8px;
                 border-radius: s.$borderRadius;
@@ -65,14 +87,9 @@ main#main {
 
     @media only screen and (max-width:768px) { //tablet size
         aside {
-            position: absolute;
-            left: -375px;
-            height: 100%;
-            transition: linear 0.5s;
-            max-width: clamp(250px,50vw,375px);
             padding: 2rem 1rem ;
-
-            &.active {left: 0}
+            position: absolute;
+            width: clamp(255px,65vw,450px);
         }
     }
 }

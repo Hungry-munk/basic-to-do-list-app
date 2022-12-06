@@ -1,0 +1,1 @@
+document.querySelector(".menuIcon").addEventListener("click",(()=>{const e=document.querySelector("main#main"),t=document.querySelector(".taskContainer");console.log(t),e.classList.toggle("menuIsNotActive")}));
