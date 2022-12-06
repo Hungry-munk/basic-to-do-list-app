@@ -7,7 +7,7 @@ main#main {
     aside {
         width: clamp(250px,33vw,375px);
         background-color: rgba(s.$gray, 0.8);
-        padding: 1rem;
+        padding: 2rem 1.5rem ;
     }
 
     @media only screen and (max-width:768px) { //tablet size
@@ -17,7 +17,10 @@ main#main {
             height: 100%;
             transition: linear 0.5s;
             max-width: clamp(250px,50vw,375px);
+            padding: 2rem 1rem ;
+
             &.active {left: 0}
         }
     }
 }
+
