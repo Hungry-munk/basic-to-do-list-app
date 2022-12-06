@@ -1,0 +1,92 @@
+@use "./shared" as s;
+
+div.taskContainer {
+    display: flex;
+    justify-content: center;
+    div.taskWrapper {
+        flex: 1;
+        max-width: 80%;
+
+        @include s.flexColoumn;
+        gap: 10px;
+        h2.selectionTitle {
+            margin: 2rem 0 0;
+        }
+
+        button.addTask {
+            align-self: flex-start;
+            border: none;
+            font-size: 1rem;
+            color: gray;
+            cursor: pointer;
+
+            i{
+                color: s.$theme;
+                margin-right: .5rem;
+            }
+
+        }
+        div.tasks {
+            .task {
+                display: flex;
+                align-items: center;
+                transition: 0.3s ease-in-out;
+                gap:0.8em;
+                padding: 0.7em 0 0.7em;
+                border-bottom: 1px solid;
+                border-color: s.$gray;
+
+
+                i {
+                    transition: inherit;                    
+                    &:hover {cursor: pointer;}
+                    &.edit:hover{color: s.$green;}
+                    &.bin:hover{color: s.$theme;}
+
+                    &:first-child{
+                        &.high {color: s.$theme;}
+                        &.middle {color: orange;}
+                        &.low {color: s.$green;}
+                    }
+                }
+
+
+
+                div { //for text being centered
+                    &.taskTitle {
+                        transform: translateY(-1px);
+                        margin-right: auto;
+                        white-space: nowrap;
+                        text-overflow:ellipsis ;
+                        overflow: hidden ;
+                        position: relative;
+                    }
+                }
+
+                button.taskDetails {
+                    border: s.$green solid 2px;
+                    padding: 1.5px 5px;
+                    border-radius: s.$borderRadius;
+                    transition: inherit;
+                    
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: s.$green;
+                        color:white ;
+                    }
+                }        
+            }
+        }
+
+        @media only screen and (max-width:560px) {
+            .tasks {
+                font-size: 0.7rem;
+            }
+
+            button.taskDetails {
+                font-size: 0.7em;
+            }
+        }
+    }
+}

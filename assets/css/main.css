@@ -75,6 +75,7 @@ header nav .searchContainer input::-webkit-search-decoration, header nav .search
 main#main {
   display: flex;
   position: relative;
+  overflow: hidden visible;
 }
 main#main div.taskContainer {
   width: 100%;
@@ -97,6 +98,7 @@ main#main aside {
   flex-direction: column;
   gap: 25px;
   height: 100%;
+  z-index: 1;
 }
 main#main aside ul.primarySelectors {
   display: flex;
@@ -126,7 +128,7 @@ main#main aside div.projectsSelector div.projectsTitle {
   border-radius: 4px;
   font-size: 1.2rem;
 }
-main#main aside div.projectsSelector div.projectsTitle.active .fa-solid {
+main#main aside div.projectsSelector div.projectsTitle.active > .fa-solid {
   transition: 0.2s ease-in-out;
   transform: rotate(180deg);
 }
@@ -156,9 +158,93 @@ main#main aside div.dropDown button.addProject:hover {
 }
 @media only screen and (max-width: 768px) {
   main#main aside {
+    transition: linear 0.3s;
     padding: 2rem 1rem;
     position: absolute;
     width: clamp(255px, 65vw, 450px);
+  }
+}
+
+div.taskContainer {
+  display: flex;
+  justify-content: center;
+}
+div.taskContainer div.taskWrapper {
+  flex: 1;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+div.taskContainer div.taskWrapper h2.selectionTitle {
+  margin: 2rem 0 0;
+}
+div.taskContainer div.taskWrapper button.addTask {
+  align-self: flex-start;
+  border: none;
+  font-size: 1rem;
+  color: gray;
+  cursor: pointer;
+}
+div.taskContainer div.taskWrapper button.addTask i {
+  color: #AE3932;
+  margin-right: 0.5rem;
+}
+div.taskContainer div.taskWrapper div.tasks .task {
+  display: flex;
+  align-items: center;
+  transition: 0.3s ease-in-out;
+  gap: 0.8em;
+  padding: 0.7em 0 0.7em;
+  border-bottom: 1px solid;
+  border-color: #e3e3e3;
+}
+div.taskContainer div.taskWrapper div.tasks .task i {
+  transition: inherit;
+}
+div.taskContainer div.taskWrapper div.tasks .task i:hover {
+  cursor: pointer;
+}
+div.taskContainer div.taskWrapper div.tasks .task i.edit:hover {
+  color: #3ba395;
+}
+div.taskContainer div.taskWrapper div.tasks .task i.bin:hover {
+  color: #AE3932;
+}
+div.taskContainer div.taskWrapper div.tasks .task i:first-child.high {
+  color: #AE3932;
+}
+div.taskContainer div.taskWrapper div.tasks .task i:first-child.middle {
+  color: orange;
+}
+div.taskContainer div.taskWrapper div.tasks .task i:first-child.low {
+  color: #3ba395;
+}
+div.taskContainer div.taskWrapper div.tasks .task div.taskTitle {
+  transform: translateY(-1px);
+  margin-right: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+}
+div.taskContainer div.taskWrapper div.tasks .task button.taskDetails {
+  border: #3ba395 solid 2px;
+  padding: 1.5px 5px;
+  border-radius: 4px;
+  transition: inherit;
+}
+div.taskContainer div.taskWrapper div.tasks .task button.taskDetails:hover {
+  cursor: pointer;
+  background-color: #3ba395;
+  color: white;
+}
+@media only screen and (max-width: 560px) {
+  div.taskContainer div.taskWrapper .tasks {
+    font-size: 0.7rem;
+  }
+  div.taskContainer div.taskWrapper button.taskDetails {
+    font-size: 0.7em;
   }
 }
 
@@ -169,6 +255,7 @@ footer {
   gap: 15px;
   padding: 7px 0;
   background-color: #AE3932;
+  z-index: 1;
 }
 footer a {
   color: black;

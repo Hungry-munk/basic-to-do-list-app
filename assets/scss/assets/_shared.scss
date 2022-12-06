@@ -1,6 +1,7 @@
 $theme : #AE3932;
 $white :#eEebeb;
 $gray : #e3e3e3;
+$green: #3ba395;
 
 $borderRadius : 4px;
 
@@ -26,4 +27,13 @@ $borderRadius : 4px;
         background-color: rgba($white, 1);
         cursor: pointer;
     }
+}
+
+@mixin mainAddButton {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

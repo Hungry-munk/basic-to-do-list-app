@@ -3,9 +3,8 @@
 main#main {
     display: flex;
     position: relative;
-    div.taskContainer {
-        width: 100%;
-    }
+    div.taskContainer {width: 100%;}
+    overflow: hidden visible;
 
     &.menuIsNotActive {
         div.taskContainer {
@@ -28,20 +27,18 @@ main#main {
         @include s.flexColoumn;
         gap: 25px;
         height: 100%;
-
-
+        z-index: 1;
 
         // sidebar stuff
         ul.primarySelectors {
             @include s.flexColoumn;
             gap: 8px;
-            
+
             li  {
             padding: 8px;
             border-radius: s.$borderRadius;
             font-size:1.2rem ;
             @include s.sidebarTitles
-            
             }
         }
 
@@ -52,13 +49,10 @@ main#main {
                 gap: 10px;
                 margin-bottom: 10px;
 
-                &.active {
-                    .fa-solid{
-                        transition: 0.2s ease-in-out;
-                        transform: rotate(180deg);        
-                    }
+                &.active > .fa-solid{
+                    transition: 0.2s ease-in-out;
+                    transform: rotate(180deg);        
                 }
-
                 padding: 8px;
                 border-radius: s.$borderRadius;
                 font-size:1.2rem ;
@@ -69,13 +63,7 @@ main#main {
         div.dropDown {
             > * {margin-left: 30px;}
             button.addProject {
-                background-color: inherit;
-                border: none;
-                outline: none;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-
+                @include s.mainAddButton;
                 &:hover {
                     cursor: pointer;
                     transform: scale(1.1);
@@ -87,6 +75,7 @@ main#main {
 
     @media only screen and (max-width:768px) { //tablet size
         aside {
+            transition: linear 0.3s;
             padding: 2rem 1rem ;
             position: absolute;
             width: clamp(255px,65vw,450px);
