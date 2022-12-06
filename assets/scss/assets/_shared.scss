@@ -2,9 +2,28 @@ $theme : #AE3932;
 $white :#eEebeb;
 $gray : #e3e3e3;
 
+$borderRadius : 4px;
+
 @mixin flexCenter {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+@mixin flexColoumn {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin sidebarTitles {
+    > div {
+        display: flex;
+        align-items: center;
+        gap:10px
+    }
+
+    &:hover {
+        background-color: rgba($white, 0.8);
+        cursor: pointer;
+    }
+}

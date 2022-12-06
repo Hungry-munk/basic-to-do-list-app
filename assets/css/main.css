@@ -80,6 +80,65 @@ main#main aside {
   width: clamp(250px, 33vw, 375px);
   background-color: rgba(227, 227, 227, 0.8);
   padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+main#main aside ul.primarySelectors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+main#main aside ul.primarySelectors li {
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+main#main aside ul.primarySelectors li > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+main#main aside ul.primarySelectors li:hover {
+  background-color: rgba(238, 235, 235, 0.8);
+  cursor: pointer;
+}
+main#main aside div.projectsSelector div.projectsTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+main#main aside div.projectsSelector div.projectsTitle.active .fa-solid {
+  transition: 0.2s ease-in-out;
+  transform: rotate(180deg);
+}
+main#main aside div.projectsSelector div.projectsTitle > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+main#main aside div.projectsSelector div.projectsTitle:hover {
+  background-color: rgba(238, 235, 235, 0.8);
+  cursor: pointer;
+}
+main#main aside div.dropDown > * {
+  margin-left: 30px;
+}
+main#main aside div.dropDown button.addProject {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+main#main aside div.dropDown button.addProject:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 @media only screen and (max-width: 768px) {
   main#main aside {

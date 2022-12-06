@@ -8,6 +8,59 @@ main#main {
         width: clamp(250px,33vw,375px);
         background-color: rgba(s.$gray, 0.8);
         padding: 2rem 1.5rem ;
+        @include s.flexColoumn;
+        gap: 25px;
+
+        // sidebar stuff
+        ul.primarySelectors {
+            @include s.flexColoumn;
+            gap: 8px;
+            
+            li  {
+            padding: 8px;
+            border-radius: s.$borderRadius;
+            font-size:1.2rem ;
+            @include s.sidebarTitles
+            
+            }
+        }
+
+        div.projectsSelector {
+            div.projectsTitle {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+
+                &.active {.fa-solid{
+                        transition: 0.2s ease-in-out;
+                        transform: rotate(180deg);        
+                    }}
+
+                padding: 8px;
+                border-radius: s.$borderRadius;
+                font-size:1.2rem ;
+                @include s.sidebarTitles
+            }
+        }
+
+        div.dropDown {
+            > * {margin-left: 30px;}
+            button.addProject {
+                background-color: inherit;
+                border: none;
+                outline: none;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.1);
+                }
+
+            }  
+        }
     }
 
     @media only screen and (max-width:768px) { //tablet size
