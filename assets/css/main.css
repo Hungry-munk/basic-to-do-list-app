@@ -158,7 +158,7 @@ main#main aside div.dropDown button.addProject:hover {
 }
 @media only screen and (max-width: 768px) {
   main#main aside {
-    transition: linear 0.3s;
+    transition: linear 0.15s;
     padding: 2rem 1rem;
     position: absolute;
     width: clamp(255px, 65vw, 450px);
