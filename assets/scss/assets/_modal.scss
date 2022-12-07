@@ -13,6 +13,7 @@ div#modalBackground {
     display: none;
 
     .modal{
+        z-index: 3;
         background-color: s.$white;
         border-radius: s.$borderRadius;
         max-width: 800px;
@@ -106,5 +107,52 @@ div#modalBackground {
         @media only screen and (max-width:768px) {@include s.flexColoumn;}
     }
 
+}
 
+div.projectCreator {
+    position: relative;
+    @include s.flexColoumn;
+    gap: 5px;
+
+    div{
+        &:first-child {
+        @include s.flexColoumn;
+        color: s.$theme;
+        font-size: 0.8rem;
+        }
+
+        &:last-child {
+            button {
+                padding: 0.4rem 0.8rem;
+                border-radius: s.$borderRadius;
+                border: 1px solid gray;
+                cursor: pointer;
+                background-color: inherit;
+
+                &:first-child:hover {
+                    background-color: s.$theme;
+                    border: 1px solid s.$theme;
+
+                    color: s.$white;
+                }
+                &:last-child:hover{
+                    background-color: s.$teal;
+                    border: 1px solid s.$teal;
+                    color: s.$white;
+                }
+            }
+        }
+    }
+
+
+    input {
+        border: 1px solid gray;
+        border-radius: s.$borderRadius;
+        background-color: inherit;
+        padding : .4rem 0.8rem;
+        font-size: 1rem;
+        outline: none;
+        position: relative;
+
+    }
 }

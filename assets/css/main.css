@@ -263,6 +263,7 @@ div#modalBackground {
   display: none;
 }
 div#modalBackground .modal {
+  z-index: 3;
   background-color: #eEebeb;
   border-radius: 4px;
   max-width: 800px;
@@ -355,6 +356,45 @@ div#modalBackground form.taskCreationForm .taskCreationDecision {
     display: flex;
     flex-direction: column;
   }
+}
+
+div.projectCreator {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+div.projectCreator div:first-child {
+  display: flex;
+  flex-direction: column;
+  color: #AE3932;
+  font-size: 0.8rem;
+}
+div.projectCreator div:last-child button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid gray;
+  cursor: pointer;
+  background-color: inherit;
+}
+div.projectCreator div:last-child button:first-child:hover {
+  background-color: #AE3932;
+  border: 1px solid #AE3932;
+  color: #eEebeb;
+}
+div.projectCreator div:last-child button:last-child:hover {
+  background-color: #28a745;
+  border: 1px solid #28a745;
+  color: #eEebeb;
+}
+div.projectCreator input {
+  border: 1px solid gray;
+  border-radius: 4px;
+  background-color: inherit;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  outline: none;
+  position: relative;
 }
 
 footer {

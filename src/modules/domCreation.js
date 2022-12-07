@@ -19,11 +19,11 @@ export function createTaskModal(){
 
             </div>
             <div class="taskDetails2">
-                <label for="">Due Date:</label>
-                <input type="datetime-local" class="taskEntry">
+                <label for="dueDate">Due Date:</label>
+                <input type="datetime-local" class="taskEntry" id="dueDate">
 
-                <label for="">Priority:</label>
-                <select id="priority class="taskEntry">
+                <label for="priority">Priority:</label>
+                <select id="priority" class="taskEntry">
                     <option value="none" selected>None</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -46,5 +46,18 @@ export function createTaskModal(){
 }
 
 export function createProjectcreator () {
-
+    const projectCreator = document.createElement("div")
+    projectCreator.classList.add("projectCreator")
+    projectCreator.innerHTML = `
+        <div>
+            <input type="text" placeholder="Project name...">
+            <span class="projectErorrMsg"></span>
+        </div>
+        <div>
+            <button class="projectBtn">Cancel</button>
+            <button class="projectBtn">Add Project</button>
+        </div>
+    `
+    console.log(projectCreator)
+    return projectCreator
 } 
