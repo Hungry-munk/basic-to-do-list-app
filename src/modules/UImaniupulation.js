@@ -1,4 +1,6 @@
 import * as creation from "./domCreation"
+import * as UI from  "./UImaniupulation";
+
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -21,9 +23,25 @@ export function displayProjects(event) {
 }
 
 export function displayModal(event){
-    const modal = document.querySelector("#modalBackground")
-    const form = creation.createTaskModal()
+    const backgroundModal = document.querySelector("#modalBackground")
+    backgroundModal.appendChild(creation.createTaskModal())
 
-    modal.appendChild(form)
-    modal.style.display = "flex"
+    const cross = document.querySelector(".fa-x")
+    const cancelBtn = document.querySelector(".cancelTaskBtn")
+    cancelBtn.addEventListener("click", UI.removeModal)
+    cross.addEventListener("click", UI.removeModal)
+    backgroundModal.style.display = "flex"
+}
+
+export function removeModal(event) {
+    const backgroundModal = document.querySelector("#modalBackground")
+    const form = document.querySelector(".modal")
+    const cancelBtn = document.querySelector(".cancelTaskBtn")
+    const cross = document.querySelector(".fa-x")
+
+    cancelBtn.addEventListener("click", UI.removeModal)
+    cross.addEventListener("click", UI.removeModal)
+
+    backgroundModal.removeChild(form)
+    backgroundModal.style.display = "none"
 }

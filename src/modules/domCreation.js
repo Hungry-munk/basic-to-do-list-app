@@ -1,3 +1,4 @@
+import * as UI from  "./UImaniupulation";
 
 export function createTaskModal(){
     const taskCreator = document.createElement("div")
@@ -23,6 +24,10 @@ export function createTaskModal(){
 
                 <label for="">Priority:</label>
                 <select id="priority class="taskEntry">
+                    <option value="none" selected>None</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
                 </select>
 
                 <label for="">Project:</label>
@@ -39,3 +44,7 @@ export function createTaskModal(){
 
     return taskCreator
 }
+
+export function createProjectcreator () {
+
+} 

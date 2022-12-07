@@ -320,6 +320,7 @@ div#modalBackground .modal form button.modalBtn.cancelModalBtn:hover {
 div#modalBackground .modal form textarea {
   height: calc(7rem + 3px);
   resize: none;
+  width: auto;
 }
 div#modalBackground .modal form label {
   margin-bottom: 0.6rem;
