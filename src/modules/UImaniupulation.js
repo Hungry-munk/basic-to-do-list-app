@@ -1,3 +1,5 @@
+import * as creation from "./domCreation"
+
 export function displayMenu() {
     const main = document.querySelector("main#main")
     const taskContainer = document.querySelector(".taskContainer")
@@ -16,4 +18,12 @@ export function displayProjects(event) {
         caretSymbol.classList.toggle("fa-caret-down")
         caretSymbol.classList.toggle("fa-caret-up")
     }
+}
+
+export function displayModal(event){
+    const modal = document.querySelector("#modalBackground")
+    const form = creation.createTaskModal()
+
+    modal.appendChild(form)
+    modal.style.display = "flex"
 }
