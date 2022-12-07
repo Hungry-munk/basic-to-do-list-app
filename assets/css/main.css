@@ -151,10 +151,14 @@ main#main aside div.dropDown button.addProject {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: gray;
+}
+main#main aside div.dropDown button.addProject i {
+  margin-right: 0.4rem;
+  color: #AE3932;
 }
 main#main aside div.dropDown button.addProject:hover {
   cursor: pointer;
-  transform: scale(1.1);
 }
 @media only screen and (max-width: 768px) {
   main#main aside {

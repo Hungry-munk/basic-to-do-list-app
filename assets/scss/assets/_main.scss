@@ -64,9 +64,15 @@ main#main {
             > * {margin-left: 30px;}
             button.addProject {
                 @include s.mainAddButton;
+                color: gray;
+
+                i{
+                    margin-right: 0.4rem;
+                    color: s.$theme;
+                }
                 &:hover {
                     cursor: pointer;
-                    transform: scale(1.1);
+                    // transform: scale(1.1);
                 }
 
             }  

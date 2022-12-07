@@ -29,7 +29,7 @@ export function displayModal(event){
 
     const cross = document.querySelector(".fa-x")
     const cancelBtn = document.querySelector(".cancelTaskBtn")
-    events.addEvent(UI.removeModal,"click",cross,cancelBtn)
+    events.addEvent(removeModal,"click",cross,cancelBtn)
 
     backgroundModal.style.display = "flex"
 }
@@ -40,7 +40,7 @@ export function removeModal(event) {
     const cancelBtn = document.querySelector(".cancelTaskBtn")
     const cross = document.querySelector(".fa-x")
 
-    events.removeEvent(UI.removeModal,"click",cross,cancelBtn)
+    events.removeEvent(removeModal,"click",cross,cancelBtn)
 
     backgroundModal.removeChild(form)
     backgroundModal.style.display = "none"
@@ -51,10 +51,31 @@ export function displayProjectCreation(event) {
     const projects = document.querySelector(".projects")
     const addProjectBtn = document.querySelector(".addProject")
     const dropdown = document.querySelector(".dropDown")
-    
-    dropdown.appendChild(projectCreator)
+    dropdown.appendChild(creation.createProjectcreator())
+
+    const confirmProjectBtn = document.querySelector(".addProjectBtn")
+    const cancelProjectBtn = document.querySelector(".cancelProjectBtn")
+
+    events.addEvent(removeProjectCreation,"click",cancelProjectBtn)
+
     projects.style.display = "none"
     addProjectBtn.style.display = "none"
 
+}
+
+export function removeProjectCreation(event) {
+const projectCreator = document.querySelector(".projectCreator")
+    const projects = document.querySelector(".projects")
+    const addProjectBtn = document.querySelector(".addProject")
+    const dropdown = document.querySelector(".dropDown")    
     
+    const confirmProjectBtn = document.querySelector(".addProjectBtn")
+    const cancelProjectBtn = document.querySelector(".cancelProjectBtn")
+
+    events.removeEvent(removeProjectCreation,"click",cancelProjectBtn)
+
+
+    dropdown.removeChild(projectCreator)
+    projects.style.display = "block"
+    addProjectBtn.style.display = "block"
 }

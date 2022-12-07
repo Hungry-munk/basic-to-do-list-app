@@ -54,10 +54,9 @@ export function createProjectcreator () {
             <span class="projectErorrMsg"></span>
         </div>
         <div>
-            <button class="projectBtn">Cancel</button>
-            <button class="projectBtn">Add Project</button>
+            <button class="projectBtn cancelProjectBtn">Cancel</button>
+            <button class="projectBtn addProjectBtn">Add Project</button>
         </div>
     `
-    console.log(projectCreator)
     return projectCreator
 } 
