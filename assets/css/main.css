@@ -375,7 +375,8 @@ div.projectCreator div:first-child {
   font-size: 0.8rem;
 }
 div.projectCreator div:last-child button {
-  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.75rem;
   border-radius: 4px;
   border: 1px solid gray;
   cursor: pointer;
@@ -392,13 +393,13 @@ div.projectCreator div:last-child button:last-child:hover {
   color: #eEebeb;
 }
 div.projectCreator input {
+  width: 100%;
   border: 1px solid gray;
   border-radius: 4px;
   background-color: inherit;
   padding: 0.4rem 0.8rem;
   font-size: 1rem;
   outline: none;
-  position: relative;
 }
 
 footer {

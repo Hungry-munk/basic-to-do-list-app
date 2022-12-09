@@ -64,7 +64,7 @@ export function displayProjectCreation(event) {
 }
 
 export function removeProjectCreation(event) {
-const projectCreator = document.querySelector(".projectCreator")
+    const projectCreator = document.querySelector(".projectCreator")
     const projects = document.querySelector(".projects")
     const addProjectBtn = document.querySelector(".addProject")
     const dropdown = document.querySelector(".dropDown")    
@@ -78,4 +78,11 @@ const projectCreator = document.querySelector(".projectCreator")
     dropdown.removeChild(projectCreator)
     projects.style.display = "block"
     addProjectBtn.style.display = "block"
+}
+
+export function addProjects(...projects) {
+    const projectContainer = document.querySelector("projects")
+    projects.forEach(project=>{
+        projectContainer.appendChild(project)
+    })
 }

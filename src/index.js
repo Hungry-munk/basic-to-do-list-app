@@ -1,5 +1,4 @@
 import { UImanipulator } from "./modules/events";
-
-window.addEventListener("DOMContentLoaded", e =>{
-    UImanipulator()
-})
+import * as str from "./modules/storage"
+const masterObject = str.getMasterObject()
+UImanipulator()

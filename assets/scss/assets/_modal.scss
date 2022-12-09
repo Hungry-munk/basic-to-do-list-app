@@ -123,7 +123,8 @@ div.projectCreator {
 
         &:last-child {
             button {
-                padding: 0.4rem 0.8rem;
+                font-size: .7rem;
+                padding: 0.4rem 0.75rem;
                 border-radius: s.$borderRadius;
                 border: 1px solid gray;
                 cursor: pointer;
@@ -146,13 +147,13 @@ div.projectCreator {
 
 
     input {
+        width: 100%;
         border: 1px solid gray;
         border-radius: s.$borderRadius;
         background-color: inherit;
         padding : .4rem 0.8rem;
         font-size: 1rem;
         outline: none;
-        position: relative;
 
     }
 }

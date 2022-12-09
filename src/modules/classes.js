@@ -26,9 +26,12 @@ export class task {
         this.priority= priority;
         this.dueDate = dueDate;
         this.project = project
-
+        this.completion =  false;
     }
      
+    generateHTML () {
+        return 
+    }
 }
 
 export class masterObject {
@@ -40,7 +43,6 @@ export class masterObject {
         return this.projects.reduce((tasksArray,project)=>(
             tasksArray.concat(project.tasks)),[])
     }
-
 
 }
 
