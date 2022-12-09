@@ -1,7 +1,5 @@
 import * as creation from "./domCreation"
-import * as UI from  "./UImaniupulation";
-import * as events from "./events"
-
+import * as func from "./function"
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -29,7 +27,7 @@ export function displayModal(event){
 
     const cross = document.querySelector(".fa-x")
     const cancelBtn = document.querySelector(".cancelTaskBtn")
-    events.addEvent(removeModal,"click",cross,cancelBtn)
+    func.addEvent(removeModal,"click",cross,cancelBtn)
 
     backgroundModal.style.display = "flex"
 }
@@ -40,7 +38,7 @@ export function removeModal(event) {
     const cancelBtn = document.querySelector(".cancelTaskBtn")
     const cross = document.querySelector(".fa-x")
 
-    events.removeEvent(removeModal,"click",cross,cancelBtn)
+    func.removeEvent(removeModal,"click",cross,cancelBtn)
 
     backgroundModal.removeChild(form)
     backgroundModal.style.display = "none"
@@ -56,7 +54,7 @@ export function displayProjectCreation(event) {
     const confirmProjectBtn = document.querySelector(".addProjectBtn")
     const cancelProjectBtn = document.querySelector(".cancelProjectBtn")
 
-    events.addEvent(removeProjectCreation,"click",cancelProjectBtn)
+    func.addEvent(removeProjectCreation,"click",cancelProjectBtn)
 
     projects.style.display = "none"
     addProjectBtn.style.display = "none"
@@ -72,7 +70,7 @@ export function removeProjectCreation(event) {
     const confirmProjectBtn = document.querySelector(".addProjectBtn")
     const cancelProjectBtn = document.querySelector(".cancelProjectBtn")
 
-    events.removeEvent(removeProjectCreation,"click",cancelProjectBtn)
+    func.removeEvent(removeProjectCreation,"click",cancelProjectBtn)
 
 
     dropdown.removeChild(projectCreator)

@@ -28,3 +28,9 @@ export function getMasterObject(){
         return createFirstTimeMasterObj()
     }
 }
+
+
+export function saveProject (project,masterObj) {
+    masterObj.projects.push(project)
+    localStorage.masterObject = JSON.stringify(masterObj)
+}
