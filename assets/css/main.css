@@ -144,6 +144,7 @@ main#main aside div.projectsSelector div.dropDown {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  max-height: 200px;
 }
 main#main aside div.projectsSelector div.dropDown > * {
   margin-left: 25px;

@@ -18,7 +18,6 @@ export function createProject(event) {
     // project creation
     const newProject = func.createProject(inputField.value)
     str.saveProject(newProject,str.masterObject)
-    console.log(str.masterObject)
     UI.addProjects(newProject)
     // finishing
     UI.removeProjectCreation()

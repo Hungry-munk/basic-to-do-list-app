@@ -1,5 +1,6 @@
+import { masterObject } from "./storage"
 
-export function createTaskModal(){
+export function createTaskModal(masterObj){
     const taskCreator = document.createElement("div")
     taskCreator.classList.add("modal")
     taskCreator.innerHTML = `
@@ -42,6 +43,16 @@ export function createTaskModal(){
         </form>
 
     `
+    // accessing the second select option
+    const projectSelector = taskCreator.querySelector("#projectSelection")
+    masterObj.projects.forEach(project => {
+        const option = document.createElement("option")
+        option.textContent = project.title
+        // default option
+        if (project.title == "Home") option.selected = true
+
+        projectSelector.appendChild(option)
+    });
 
     return taskCreator
 }

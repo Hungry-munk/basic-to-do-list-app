@@ -1,6 +1,7 @@
 import * as creation from "./domCreation"
 import * as func from "./function"
 import * as bundle from "./functionBundler"
+import * as s from "./storage"
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -24,7 +25,7 @@ export function displayProjects(event) {
 
 export function displayModal(event){
     const backgroundModal = document.querySelector("#modalBackground")
-    backgroundModal.appendChild(creation.createTaskModal())
+    backgroundModal.appendChild(creation.createTaskModal(s.masterObject))
 
     const cross = document.querySelector(".fa-x")
     const cancelBtn = document.querySelector(".cancelTaskBtn")
@@ -82,10 +83,9 @@ export function removeProjectCreation(event) {
 }
 
 export function addProjects(...projects) {
-    console.log(projects)
     const projectContainer = document.querySelector(".projects")
     projects.forEach(project=>{
-        console.log(project.projectHTML)
+        if (project.title == "Home") return
         projectContainer.appendChild(project.projectHTML)
     })
 }

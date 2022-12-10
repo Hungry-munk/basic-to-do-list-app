@@ -14,6 +14,7 @@ export const masterObject = (()=>{
                 return Object.assign(newProject,project) 
             })
             // saving the master object to local storage
+            localStorage.clear()                        
             localStorage.masterObject = JSON.stringify(newMasterObject)
             return newMasterObject
         }
@@ -30,6 +31,7 @@ export const masterObject = (()=>{
 })();
 
 export function saveProject (project,masterObj) {
+    console.log(masterObj)
     masterObj.projects.push(project)
     localStorage.masterObject = JSON.stringify(masterObj)
 }
