@@ -12,7 +12,7 @@ export function displayProjects(event) {
     const dropDown = document.querySelector(".dropDown")
     const caretSymbol = event.target.children[0]
     if (dropDown.style.display == "none") {
-        dropDown.style.display = "block"
+        dropDown.style.display = "flex"
         caretSymbol.classList.toggle("fa-caret-down")
         caretSymbol.classList.toggle("fa-caret-up")
     } else {
@@ -77,8 +77,8 @@ export function removeProjectCreation(event) {
 
 
     dropdown.removeChild(projectCreator)
-    projects.style.display = "block"
-    addProjectBtn.style.display = "block"
+    projects.style.display = "flex"
+    addProjectBtn.style.display = "flex"
 }
 
 export function addProjects(...projects) {

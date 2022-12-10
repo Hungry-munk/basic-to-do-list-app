@@ -47,7 +47,7 @@ main#main {
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                margin-bottom: 10px;
+                // margin-bottom: 1px;
 
                 &.active > .fa-solid{
                     transition: 0.2s ease-in-out;
@@ -58,24 +58,56 @@ main#main {
                 font-size:1.2rem ;
                 @include s.sidebarTitles
             }
-        }
 
-        div.dropDown {
-            > * {margin-left: 30px;}
-            button.addProject {
-                @include s.mainAddButton;
-                color: gray;
+            div.dropDown {
+                @include s.flexColoumn;
+                gap: 15px;
+                > * {margin-left: 30px;}
+                button.addProject {
+                    margin-left: 35px;
+                    @include s.mainAddButton;
+                    color: gray;
 
-                i{
-                    margin-right: 0.4rem;
-                    color: s.$theme;
+                    i{
+                        margin-right: 0.4rem;
+                        color: s.$theme;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                        // transform: scale(1.1);
+                    }
+                }  
+                .projects {
+                    @include s.flexColoumn;
+                    .project {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        border-radius: s.$borderRadius;
+                        padding: 0.3rem;
+                        &:hover {
+                            background-color: rgba(s.$white, 1);
+                            cursor: pointer;
+                            & i:last-child {visibility: visible;}
+                        }
+                        .projectTitle {
+                            transform: translateY(-3px);
+                        }
+                        i {
+                            font-size: 0.8rem;
+                            &:first-child{
+                                margin-right: 0.4rem;
+                            }
+                            &:last-child{
+                                margin-right: 5px;
+                                margin-left: auto;
+                                visibility: hidden;
+                                &:hover{color: s.$theme;}
+                            }
+                        }
+                    }
                 }
-                &:hover {
-                    cursor: pointer;
-                    // transform: scale(1.1);
-                }
-
-            }  
+            }
         }
     }
 

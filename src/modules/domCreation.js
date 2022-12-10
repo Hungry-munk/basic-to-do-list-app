@@ -67,7 +67,7 @@ export function createProject(projectTitle) {
     projectHTML.classList.add("project")
     projectHTML.innerHTML = `
         <i class="fa-solid fa-circle"></i>
-        <div class="projectTitle">${projectTitle}<div>
+        <div class="projectTitle">${projectTitle}</div>
         <i class="fa-solid fa-trash bin"></i>
     `
     return projectHTML

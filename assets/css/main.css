@@ -123,7 +123,6 @@ main#main aside div.projectsSelector div.projectsTitle {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
   padding: 8px;
   border-radius: 4px;
   font-size: 1.2rem;
@@ -141,10 +140,16 @@ main#main aside div.projectsSelector div.projectsTitle:hover {
   background-color: #eeebeb;
   cursor: pointer;
 }
-main#main aside div.dropDown > * {
+main#main aside div.projectsSelector div.dropDown {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+main#main aside div.projectsSelector div.dropDown > * {
   margin-left: 30px;
 }
-main#main aside div.dropDown button.addProject {
+main#main aside div.projectsSelector div.dropDown button.addProject {
+  margin-left: 35px;
   background-color: inherit;
   border: none;
   outline: none;
@@ -153,12 +158,47 @@ main#main aside div.dropDown button.addProject {
   gap: 10px;
   color: gray;
 }
-main#main aside div.dropDown button.addProject i {
+main#main aside div.projectsSelector div.dropDown button.addProject i {
   margin-right: 0.4rem;
   color: #AE3932;
 }
-main#main aside div.dropDown button.addProject:hover {
+main#main aside div.projectsSelector div.dropDown button.addProject:hover {
   cursor: pointer;
+}
+main#main aside div.projectsSelector div.dropDown .projects {
+  display: flex;
+  flex-direction: column;
+}
+main#main aside div.projectsSelector div.dropDown .projects .project {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  padding: 0.3rem;
+}
+main#main aside div.projectsSelector div.dropDown .projects .project:hover {
+  background-color: #eeebeb;
+  cursor: pointer;
+}
+main#main aside div.projectsSelector div.dropDown .projects .project:hover i:last-child {
+  visibility: visible;
+}
+main#main aside div.projectsSelector div.dropDown .projects .project .projectTitle {
+  transform: translateY(-3px);
+}
+main#main aside div.projectsSelector div.dropDown .projects .project i {
+  font-size: 0.8rem;
+}
+main#main aside div.projectsSelector div.dropDown .projects .project i:first-child {
+  margin-right: 0.4rem;
+}
+main#main aside div.projectsSelector div.dropDown .projects .project i:last-child {
+  margin-right: 5px;
+  margin-left: auto;
+  visibility: hidden;
+}
+main#main aside div.projectsSelector div.dropDown .projects .project i:last-child:hover {
+  color: #AE3932;
 }
 @media only screen and (max-width: 768px) {
   main#main aside {
