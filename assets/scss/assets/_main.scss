@@ -62,9 +62,9 @@ main#main {
             div.dropDown {
                 @include s.flexColoumn;
                 gap: 15px;
-                > * {margin-left: 30px;}
+                > * {margin-left: 25px;}
                 button.addProject {
-                    margin-left: 35px;
+                    margin-left: 30px;
                     @include s.mainAddButton;
                     color: gray;
 
@@ -90,8 +90,12 @@ main#main {
                             cursor: pointer;
                             & i:last-child {visibility: visible;}
                         }
-                        .projectTitle {
-                            transform: translateY(-3px);
+                        .projectTitle{transform: translateY(-3px);}
+                        .taskCounter{
+                            color: gray;
+                            font-size: 0.7rem;
+                            transform: translateY(-2px);
+                            &::before{content: " ";}
                         }
                         i {
                             font-size: 0.8rem;

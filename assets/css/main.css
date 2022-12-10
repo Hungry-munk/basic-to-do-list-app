@@ -146,10 +146,10 @@ main#main aside div.projectsSelector div.dropDown {
   gap: 15px;
 }
 main#main aside div.projectsSelector div.dropDown > * {
-  margin-left: 30px;
+  margin-left: 25px;
 }
 main#main aside div.projectsSelector div.dropDown button.addProject {
-  margin-left: 35px;
+  margin-left: 30px;
   background-color: inherit;
   border: none;
   outline: none;
@@ -185,6 +185,14 @@ main#main aside div.projectsSelector div.dropDown .projects .project:hover i:las
 }
 main#main aside div.projectsSelector div.dropDown .projects .project .projectTitle {
   transform: translateY(-3px);
+}
+main#main aside div.projectsSelector div.dropDown .projects .project .taskCounter {
+  color: gray;
+  font-size: 0.7rem;
+  transform: translateY(-2px);
+}
+main#main aside div.projectsSelector div.dropDown .projects .project .taskCounter::before {
+  content: " ";
 }
 main#main aside div.projectsSelector div.dropDown .projects .project i {
   font-size: 0.8rem;
@@ -237,7 +245,6 @@ div.taskContainer div.taskWrapper button.addTask i {
 div.taskContainer div.taskWrapper div.tasks .task {
   display: flex;
   align-items: center;
-  transition: 0.3s ease-in-out;
   gap: 0.8em;
   padding: 0.7em 0 0.7em;
   border-bottom: 1px solid;

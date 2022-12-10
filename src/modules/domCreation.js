@@ -68,6 +68,7 @@ export function createProject(projectTitle) {
     projectHTML.innerHTML = `
         <i class="fa-solid fa-circle"></i>
         <div class="projectTitle">${projectTitle}</div>
+        <div class="taskCounter"></div>
         <i class="fa-solid fa-trash bin"></i>
     `
     return projectHTML
