@@ -18,10 +18,9 @@ export function addEvent (func,event, ...elements ) {
 export function removeEvent (func,event, ...elements ) {
     elements.forEach(element=> element.removeEventListener(event,func))};
 
-export function createProject(inputField){
-    const inputValue = inputField.value
+export function createProject(inputValue){
     const newProject = new cls.Project(inputValue)
-
+    //  for expansion if needed
     return newProject
 }
 
@@ -37,6 +36,6 @@ export function checkNameValidity(name) {
     }
     return {
         validity:true,
-        Message : ""
+        message : ""
     }
 }

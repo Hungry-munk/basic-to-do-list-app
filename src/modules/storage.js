@@ -1,9 +1,9 @@
 import {createFirstTimeMasterObj} from "./function"
 import * as cls from "./classes"
 
-export function getMasterObject(){
+export const masterObject = (()=>{
     if (typeof(Storage) !== "undefined") {
-        if (localStorage.masterObject.projects.home) {
+        if (localStorage.masterObject) {
             const newMasterObject = new cls.masterObject()
             const storedMasterObject = JSON.parse(localStorage.masterObject)
             // transfering all projects and tasks
@@ -27,8 +27,7 @@ export function getMasterObject(){
         localStorage.clear()                        
         return createFirstTimeMasterObj()
     }
-}
-
+})();
 
 export function saveProject (project,masterObj) {
     masterObj.projects.push(project)

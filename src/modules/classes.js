@@ -1,3 +1,5 @@
+import * as creation from "./domCreation"
+
 export class Project {
     constructor(title) {
         this.title = title
@@ -5,8 +7,8 @@ export class Project {
 
     }
 
-    generateHTML () {
-        return 
+    get projectHTML () {
+        return creation.createProject(this.title)
     }
     
     addTask(task){
@@ -29,7 +31,7 @@ export class task {
         this.completion =  false;
     }
      
-    generateHTML () {
+    get taskHTML () {
         return 
     }
 }

@@ -29,8 +29,10 @@ export function createTaskModal(){
                     <option value="high">High</option>
                 </select>
 
-                <label for="">Project:</label>
-                <select id="" class="taskEntry"></select>
+                <label for="projectSelection">Project:</label>
+                <select id="projectSelection" class="taskEntry">
+                
+                </select>
             </div>
             <div class="taskCreationDecision">
                 <button type="button" class="cancelTaskBtn modalBtn cancelModalBtn">Cancel</button>
@@ -44,12 +46,12 @@ export function createTaskModal(){
     return taskCreator
 }
 
-export function createProjectcreator () {
+export function createProjectCreator () {
     const projectCreator = document.createElement("div")
     projectCreator.classList.add("projectCreator")
     projectCreator.innerHTML = `
         <div>
-            <input type="text" placeholder="Project name...">
+            <input id="projectName" type="text" placeholder="Project name...">
             <span class="projectErorrMsg"></span>
         </div>
         <div>
@@ -58,4 +60,15 @@ export function createProjectcreator () {
         </div>
     `
     return projectCreator
-} 
+}
+
+export function createProject(projectTitle) {
+    const projectHTML = document.createElement("div")
+    projectHTML.classList.add("project")
+    projectHTML.innerHTML = `
+        <i class="fa-solid fa-circle"></i>
+        <div class="projectTitle">${projectTitle}<div>
+        <i class="fa-solid fa-trash bin"></i>
+    `
+    return projectHTML
+}

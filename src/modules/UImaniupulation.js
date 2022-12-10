@@ -1,5 +1,6 @@
 import * as creation from "./domCreation"
 import * as func from "./function"
+import * as bundle from "./functionBundler"
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -45,16 +46,17 @@ export function removeModal(event) {
 }
 
 export function displayProjectCreation(event) {
-    const projectCreator = creation.createProjectcreator()
+    const projectCreator = creation.createProjectCreator()
     const projects = document.querySelector(".projects")
     const addProjectBtn = document.querySelector(".addProject")
     const dropdown = document.querySelector(".dropDown")
-    dropdown.appendChild(creation.createProjectcreator())
-
+    dropdown.appendChild(creation.createProjectCreator())
+    //  buttons on modal
     const confirmProjectBtn = document.querySelector(".addProjectBtn")
     const cancelProjectBtn = document.querySelector(".cancelProjectBtn")
 
-    func.addEvent(removeProjectCreation,"click",cancelProjectBtn)
+    confirmProjectBtn.addEventListener("click", bundle.createProject)
+    cancelProjectBtn.addEventListener("click", removeProjectCreation)
 
     projects.style.display = "none"
     addProjectBtn.style.display = "none"
@@ -66,11 +68,12 @@ export function removeProjectCreation(event) {
     const projects = document.querySelector(".projects")
     const addProjectBtn = document.querySelector(".addProject")
     const dropdown = document.querySelector(".dropDown")    
-    
+    //  buttons on modal
     const confirmProjectBtn = document.querySelector(".addProjectBtn")
     const cancelProjectBtn = document.querySelector(".cancelProjectBtn")
 
-    func.removeEvent(removeProjectCreation,"click",cancelProjectBtn)
+    confirmProjectBtn.removeEventListener("click", bundle.createProject)
+    cancelProjectBtn.removeEventListener("click",removeProjectCreation)
 
 
     dropdown.removeChild(projectCreator)
@@ -79,8 +82,10 @@ export function removeProjectCreation(event) {
 }
 
 export function addProjects(...projects) {
-    const projectContainer = document.querySelector("projects")
+    console.log(projects)
+    const projectContainer = document.querySelector(".projects")
     projects.forEach(project=>{
-        projectContainer.appendChild(project)
+        console.log(project.projectHTML)
+        projectContainer.appendChild(project.projectHTML)
     })
 }
