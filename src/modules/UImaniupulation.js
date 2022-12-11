@@ -1,7 +1,8 @@
 import * as creation from "./domCreation"
 import * as func from "./function"
 import * as bundle from "./functionBundler"
-import * as s from "./storage"
+import * as str from "./storage"
+import * as cls from "./classes"
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -26,7 +27,7 @@ export function displayProjects(event) {
 export function displayModal(event){
     const backgroundModal = document.querySelector("#modalBackground")
     if (backgroundModal.childNodes.length > 0) return
-    backgroundModal.appendChild(creation.createTaskModal(s.masterObject))
+    backgroundModal.appendChild(creation.createTaskModal(str.masterObject))
 
     const cross = document.querySelector(".fa-x")
     const cancelBtn = document.querySelector(".cancelTaskBtn")
@@ -89,10 +90,28 @@ export function removeProjectCreation(event) {
 }
 
 export function addProjects(...projects) {
-    console.log(projects)
     const projectContainer = document.querySelector(".projects")
     projects.forEach(project=>{
         if (project.title == "Home") return
         projectContainer.appendChild(project.projectHTML)
     })
 }
+// task chaning module
+export const taskskUi = ((masterObj)=>{
+    const SelectionTitle = document.querySelector("h2.selctionTitle")
+    const tasksContainer = document.querySelector(".tasks")
+    function renderHome() {
+        tasksContainer.innerHTML=""
+        masterObj.tasks.forEach(task=>{
+            // tasksContainer.appendChild((Object.assign(
+            //     new cls.task, task)).taskHTML);
+            tasksContainer.appendChild(task.taskHTML);
+        })
+    } 
+
+
+    return {
+        renderHome,
+
+    }
+})(str.masterObject)

@@ -84,3 +84,19 @@ export function createProject(projectTitle) {
     `
     return projectHTML
 }
+
+export function createTask(title,priority,dueDate,project,completion) {
+    const task = document.createElement("div")
+    task.setAttribute("project",`${project}`)
+    task.classList.add("task")
+    if (completion) task.classList.add("completed")
+    task.innerHTML = `
+        <i class="fa-regular fa-square ${priority} "></i>
+        <div class="taskTitle">${title}</div>
+        <button class="taskDetails">Details</button>
+        <div class="taskDate">${dueDate}</div>
+        <i class="fa-solid fa-pen-to-square edit"></i>
+        <i class="fa-solid fa-trash bin"></i>
+    `
+    return task
+}

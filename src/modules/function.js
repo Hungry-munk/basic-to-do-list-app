@@ -27,6 +27,7 @@ export function createProject(inputValue){
 
 export function createTask(title,description,priority,dueDate,project) {
     const newTask = new cls.task(title,description,priority,dueDate,project)
+    // fir expansion id needed
     return newTask
 }
 

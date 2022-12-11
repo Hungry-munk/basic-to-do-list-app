@@ -32,8 +32,15 @@ export class task {
     }
      
     get taskHTML () {
-        return 
+        return creation.createTask(
+            this.title,
+            this.priority,
+            this.dueDate,
+            this.project,
+            this.completion,
+        )
     }
+
 }
 
 export class masterObject {
@@ -41,7 +48,7 @@ export class masterObject {
         this.projects = []
     }
 
-    get allTasks() {
+    get tasks() {
         return this.projects.reduce((tasksArray,project)=>(
             tasksArray.concat(project.tasks)),[])
     }

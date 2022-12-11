@@ -17,5 +17,5 @@ addProjectBtn.addEventListener("click",UI.displayProjectCreation)
 // window.addEventListener("resize",e =>
 //     sideBar.style.height = `${main.scrollHeight}px`)
 // other
-console.log(str.masterObject)
 UI.addProjects(...str.masterObject.projects)
+UI.taskskUi.renderHome()

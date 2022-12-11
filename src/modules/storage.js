@@ -9,9 +9,20 @@ export const masterObject = (()=>{
             // transfering all projects and tasks
             newMasterObject.projects = storedMasterObject.projects.map(project=>{
                 const newProject = new cls.Project()
-                newProject.tasks = project.tasks.map(task=>(
-                    Object.assign(new cls.task,task)))
-                return Object.assign(newProject,project) 
+                const newTasks = project.tasks.map(task=>{
+                    const variable= Object.assign(new cls.task(),task);
+                    console.log("")
+                    console.log(variable)
+                    return variable
+                });
+                console.log("new tasks")
+                console.log(newTasks)
+                newProject.tasks = newTasks
+                console.log("newProject.tasks")
+                console.log(newProject.tasks)
+                console.log("newProject")
+                console.log(newProject)
+                return Object.assign(newProject, project)
             })
             // saving the master object to local storage
             localStorage.clear()                        
@@ -39,4 +50,5 @@ export function saveTask(task, masterObj) {
     (masterObj.projects.find(project => project.title == task.project
         )).tasks.push(task)
     localStorage.masterObject = JSON.stringify(masterObj)
+
 }
