@@ -14,7 +14,8 @@ projectsDropdown.addEventListener("click", UI.displayProjects)
 addTaskBtn.addEventListener("click",UI.displayModal)
 addProjectBtn.addEventListener("click",UI.displayProjectCreation)
 // mainting sidebar height
-window.addEventListener("resize",e =>
-    sideBar.style.height = `${main.scrollHeight}px`)
+// window.addEventListener("resize",e =>
+//     sideBar.style.height = `${main.scrollHeight}px`)
 // other
-UI.addProjects(...[...[...str.masterObject.projects].splice(0,1)])
+console.log(str.masterObject)
+UI.addProjects(...str.masterObject.projects)

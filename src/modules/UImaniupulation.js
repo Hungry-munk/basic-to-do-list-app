@@ -25,11 +25,15 @@ export function displayProjects(event) {
 
 export function displayModal(event){
     const backgroundModal = document.querySelector("#modalBackground")
+    if (backgroundModal.childNodes.length > 0) return
     backgroundModal.appendChild(creation.createTaskModal(s.masterObject))
 
     const cross = document.querySelector(".fa-x")
     const cancelBtn = document.querySelector(".cancelTaskBtn")
+    const confirmTask = document.querySelector(".addTaskBtn")
+    // adding event listeners
     func.addEvent(removeModal,"click",cross,cancelBtn)
+    confirmTask.addEventListener("click",bundle.createTask)
 
     backgroundModal.style.display = "flex"
 }
@@ -39,8 +43,10 @@ export function removeModal(event) {
     const form = document.querySelector(".modal")
     const cancelBtn = document.querySelector(".cancelTaskBtn")
     const cross = document.querySelector(".fa-x")
+    const confirmTask = document.querySelector(".addTaskBtn")
 
     func.removeEvent(removeModal,"click",cross,cancelBtn)
+    confirmTask.removeEventListener("click",bundle.createTask)
 
     backgroundModal.removeChild(form)
     backgroundModal.style.display = "none"
@@ -83,6 +89,7 @@ export function removeProjectCreation(event) {
 }
 
 export function addProjects(...projects) {
+    console.log(projects)
     const projectContainer = document.querySelector(".projects")
     projects.forEach(project=>{
         if (project.title == "Home") return

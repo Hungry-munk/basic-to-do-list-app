@@ -1,4 +1,5 @@
 import * as cls from "./classes";
+import * as str from "./storage"
 
 export function createFirstTimeMasterObj() {
     // creating master object
@@ -24,6 +25,11 @@ export function createProject(inputValue){
     return newProject
 }
 
+export function createTask(title,description,priority,dueDate,project) {
+    const newTask = new cls.task(title,description,priority,dueDate,project)
+    return newTask
+}
+
 export function checkNameValidity(name) {
     const InvalidPattern = /^[1-9!@#$%^&*(),.?":{}|<>].*/g
     if (!name) return {
@@ -33,9 +39,24 @@ export function checkNameValidity(name) {
     else if (InvalidPattern.test(name)) return {
         validity:false,
         message: "cant start with numbers or special character"
+        }
+    else if (checkRepeatedProjectName(name)) return {
+        validity:false,
+        message: "project name already exsists"
     }
     return {
         validity:true,
         message : ""
     }
+}
+
+function checkRepeatedProjectName (name) {
+    return !!(str.masterObject.projects.find(project =>
+        project.title.toLowerCase() == name.toLowerCase()))
+}
+
+export function formatDate (date) {
+    if (!date) return "not due"
+    // removing time and replacing - with /
+    return date.replace( /T.*:.*/g ,"").replace(/-/g, "/")
 }

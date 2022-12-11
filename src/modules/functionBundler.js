@@ -23,3 +23,32 @@ export function createProject(event) {
     UI.removeProjectCreation()
 
 }
+
+export function createTask(event) {
+    const taskNameField = document.querySelector("input#taskTitle")
+    const taskDescription = document.querySelector("#taskDescription")
+    const taskPriority = document.querySelector("#priority")
+    const projectSelected = document.querySelector("#projectSelection")
+    const dueDate = document.querySelector("#dueDate")
+    // is name valif
+    
+    const taskNameInfo = func.checkNameValidity(taskNameField.value)
+    // const 
+    if (!taskNameInfo.validity) {
+        const errorMsg = document.querySelector("span.errorMsg")
+        errorMsg.textContent = taskNameInfo.message;
+        setTimeout(()=>{errorMsg.textContent=""},1200)
+        return
+    }
+
+    const useableDate = func.formatDate(dueDate.value)
+    const newTask = func.createTask(
+        taskNameField.value,
+        taskDescription.value,
+        taskPriority.value,
+        useableDate,
+        projectSelected.value
+    )
+    func.saveTask(newTask,str.masterObject)
+
+}

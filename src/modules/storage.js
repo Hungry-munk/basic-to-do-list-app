@@ -31,7 +31,12 @@ export const masterObject = (()=>{
 })();
 
 export function saveProject (project,masterObj) {
-    console.log(masterObj)
     masterObj.projects.push(project)
+    localStorage.masterObject = JSON.stringify(masterObj)
+}
+
+export function saveTask(task, masterObj) {
+    (masterObj.projects.find(project => project.title == task.project
+        )).tasks.push(task)
     localStorage.masterObject = JSON.stringify(masterObj)
 }

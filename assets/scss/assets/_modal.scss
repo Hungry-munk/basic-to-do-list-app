@@ -49,6 +49,7 @@ div#modalBackground {
                 &[type="datetime-local"]{font-size: 0.95rem;}
             }
             button.modalBtn {
+                font-size: 0.85rem;
                 padding: 0.4rem 0.8rem;
                 border-radius: s.$borderRadius;
                 border: 1px solid;
@@ -85,7 +86,13 @@ div#modalBackground {
 
         .taskDetails1 {
             grid-area: top1;
-            @include s.flexColoumn
+            @include s.flexColoumn;
+            input#taskTitle{margin-bottom: 0;}
+            span.errorMsg{
+                color: s.$theme;
+                font-size: 0.8rem;
+            }
+            label:last-of-type {margin-top: 0.6rem;}
         }
 
         .taskDetails2 {
@@ -123,8 +130,8 @@ div.projectCreator {
 
         &:last-child {
             button {
-                font-size: .7rem;
-                padding: 0.4rem 0.75rem;
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
                 border-radius: s.$borderRadius;
                 border: 1px solid gray;
                 cursor: pointer;
@@ -140,6 +147,10 @@ div.projectCreator {
                     background-color: s.$teal;
                     border: 1px solid s.$teal;
                     color: s.$white;
+                }
+                @media only screen and (min-width:768px) and (max-width:835px) {
+                    font-size: 0.75rem;
+                    padding: 0.3rem 0.75rem;         
                 }
             }
         }
