@@ -57,6 +57,6 @@ function checkRepeatedProjectName (name) {
 
 export function formatDate (date) {
     if (!date) return "not due"
-    // removing time and replacing - with /
-    return date.replace( /T.*:.*/g ,"").replace(/-/g, "/")
+    //replacing - with /
+    return date.replace(/-/g, "/")
 }

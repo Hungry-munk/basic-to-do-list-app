@@ -49,6 +49,8 @@ export function createTask(event) {
         useableDate,
         projectSelected.value
     )
-    func.saveTask(newTask,str.masterObject)
+    str.saveTask(newTask,str.masterObject)
+    // render new tasks function
+    UI.removeModal()
 
 }

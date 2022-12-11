@@ -20,7 +20,7 @@ export function createTaskModal(masterObj){
             </div>
             <div class="taskDetails2">
                 <label for="dueDate">Due Date:</label>
-                <input type="datetime-local" class="taskEntry" id="dueDate">
+                <input type="date" class="taskEntry" id="dueDate">
 
                 <label for="priority">Priority:</label>
                 <select id="priority" class="taskEntry">
