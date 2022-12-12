@@ -15,9 +15,7 @@ main#main {
             left: 0;
         }
 
-        aside {
-            transform: translateX(-100%);
-        }   
+        aside {transform: translateX(-100%);}   
     }
 
     aside {
@@ -33,7 +31,18 @@ main#main {
             background-color: rgba(s.$white, 1);
 
         }
-
+        // task counter stuff
+        li{
+            position: relative;
+            &:hover .taskCounter::before{
+                content: attr(taskCount);
+                color: gray;
+                font-size: 0.7rem;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%)
+            }
+        }   
         // sidebar stuff
         ul.primarySelectors {
             @include s.flexColoumn;
@@ -43,7 +52,9 @@ main#main {
             padding: 8px;
             border-radius: s.$borderRadius;
             font-size:1.2rem ;
-            @include s.sidebarTitles
+            @include s.sidebarTitles;
+            display: flex;
+            gap: 10px;
             }
         }
 
@@ -96,17 +107,11 @@ main#main {
                             cursor: pointer;
                             & i:last-child {visibility: visible;}
                         }
-                        .projectTitle{transform: translateY(-3px);}
-                        .taskCounter{
-                            color: gray;
-                            font-size: 0.7rem;
-                            transform: translateY(-2px);
-                            &::before{content: " ";}
-                        }
                         i {
                             font-size: 0.8rem;
                             &:first-child{
                                 margin-right: 0.4rem;
+                                transform: translateY(1.5px);
                             }
                             &:last-child{
                                 margin-right: 5px;

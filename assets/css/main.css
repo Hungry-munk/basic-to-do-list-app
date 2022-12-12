@@ -103,6 +103,17 @@ main#main aside {
 main#main aside .active {
   background-color: #eeebeb;
 }
+main#main aside li {
+  position: relative;
+}
+main#main aside li:hover .taskCounter::before {
+  content: attr(taskCount);
+  color: gray;
+  font-size: 0.7rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 main#main aside ul.primarySelectors {
   display: flex;
   flex-direction: column;
@@ -112,6 +123,8 @@ main#main aside ul.primarySelectors li {
   padding: 8px;
   border-radius: 4px;
   font-size: 1.2rem;
+  display: flex;
+  gap: 10px;
 }
 main#main aside ul.primarySelectors li > div {
   display: flex;
@@ -188,22 +201,12 @@ main#main aside div.projectsSelector div.dropDown .projects .project:hover {
 main#main aside div.projectsSelector div.dropDown .projects .project:hover i:last-child {
   visibility: visible;
 }
-main#main aside div.projectsSelector div.dropDown .projects .project .projectTitle {
-  transform: translateY(-3px);
-}
-main#main aside div.projectsSelector div.dropDown .projects .project .taskCounter {
-  color: gray;
-  font-size: 0.7rem;
-  transform: translateY(-2px);
-}
-main#main aside div.projectsSelector div.dropDown .projects .project .taskCounter::before {
-  content: " ";
-}
 main#main aside div.projectsSelector div.dropDown .projects .project i {
   font-size: 0.8rem;
 }
 main#main aside div.projectsSelector div.dropDown .projects .project i:first-child {
   margin-right: 0.4rem;
+  transform: translateY(1.5px);
 }
 main#main aside div.projectsSelector div.dropDown .projects .project i:last-child {
   margin-right: 5px;

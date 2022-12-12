@@ -12,6 +12,7 @@ const homeBtn = document.querySelector(".home")
 const todayBtn = document.querySelector(".today")
 const upcomingBtn = document.querySelector(".upcoming")
 const completedBtn = document.querySelector(".completed")
+const allProjects = [...document.querySelectorAll("li")]
 // event listeners
 menuIcon.addEventListener("click" , UI.displayMenu)
 projectsDropdown.addEventListener("click", UI.displayProjects)
@@ -22,7 +23,8 @@ homeBtn.addEventListener("click",UI.render.homeTasks)
 todayBtn.addEventListener("click",UI.render.todayTasks)
 upcomingBtn.addEventListener("click",UI.render.weekTasks)
 completedBtn.addEventListener("click",UI.render.completedTasks)
-
+allProjects.forEach(project=>
+    project.addEventListener("mouseenter",UI.updateDefualtTaskCounters));
 
 
 
@@ -31,3 +33,4 @@ completedBtn.addEventListener("click",UI.render.completedTasks)
 // other
 UI.addProjects(...str.masterObject.projects)
 UI.render.homeTasks(homeBtn)
+// adding task counter 

@@ -99,8 +99,9 @@ export function addProjects(...projects) {
         
         projectElement.setAttribute("project",`${project.title}`)
         projectElement.addEventListener("click", render.projectTasks.bind(project))
+        projectElement.addEventListener("mouseenter", projectTaskCounter.bind(project))
         trashIcon.addEventListener("click",func.removeProject.bind(project))
-        taskCounter.textContent = project.tasks.length
+        // taskCounter.textContent = project.tasks.length
 
         projectContainer.appendChild(projectElement)
     })
@@ -112,6 +113,27 @@ export function changeActivatedProject(projectName,element) {
     str.masterObject.changeCurrentProject(projectName)
     element.closest("li").classList.add("active")
 }
+
+export function updateDefualtTaskCounters() {
+    const taskCounter = this.querySelector(".taskCounter")
+    if (this.classList.contains("home")){
+        taskCounter.setAttribute("taskCount",`${str.masterObject.tasks.length}`)
+    } else if (this.classList.contains("today")) {
+        taskCounter.setAttribute("taskCount",`${str.masterObject.tasks.filter(task=>(
+            isToday(new Date(task.dueDate)))).length}`);
+    } else if (this.classList.contains("upcoming")) {
+        taskCounter.setAttribute("taskCount",`${str.masterObject.tasks.filter(task=>(
+            isThisWeek(new Date(task.dueDate)))).length}`);
+    } else if (this.classList.contains("completed")) {
+        taskCounter.setAttribute("taskCount",`${str.masterObject.tasks.filter(task=>(
+            task.completion)).length}`);
+    }
+}
+
+export function projectTaskCounter (event) {
+    const taskCounter = event.target.querySelector(".taskCounter") 
+    taskCounter.setAttribute("taskCount",`${this.tasks.length}`)
+}
  // task chaning module
 export const render = ((masterObj)=>{
     const selectionTitle = document.querySelector("h2.selectionTitle")
@@ -122,7 +144,6 @@ export const render = ((masterObj)=>{
         selectionTitle.textContent = "Home"
         const eventElement = event instanceof HTMLElement ?
             event : event.target;
-
         changeActivatedProject("Home",eventElement)
 
         masterObj.tasks.forEach(task=>{
@@ -172,10 +193,6 @@ export const render = ((masterObj)=>{
             tasksContainer.appendChild(task.taskHTML)
         })
         
-    }
-
-    function  updateTaskCounters() {
-
     }
 
     return {
