@@ -25,6 +25,22 @@ export function createProject(inputValue){
     return newProject
 }
 
+export function removeProject(event) {
+    const removedProjectIndex = str.masterObject.projects.indexOf(this)
+
+    if (removedProjectIndex != -1) {
+        str.masterObject.projects.splice(removedProjectIndex,1)
+        event.target.removeEventListener('click',removeProject)
+        // removing it from DOM
+        const projects = document.querySelector(".projects")
+        const removedProject = event.target.parentElement
+        projects.removeChild(removedProject)
+
+        // save changes
+        str.saveMasterObject()
+    }
+}
+
 export function createTask(title,description,priority,dueDate,project) {
     const newTask = new cls.task(title,description,priority,dueDate,project)
     // fir expansion id needed
@@ -61,3 +77,4 @@ export function formatDate (date) {
     //replacing - with /
     return date.replace(/-/g, "/")
 }
+

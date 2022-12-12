@@ -47,11 +47,16 @@ export class task {
 export class masterObject {
     constructor() {
         this.projects = []
+        this.currentProject = "Home"
     }
 
     get tasks() {
         return this.projects.reduce((tasksArray,project)=>(
             tasksArray.concat(project.tasks)),[])
+    }
+
+    changeCurrentProject(newCurrentProject) {
+        this.currentProject =newCurrentProject
     }
 
 }

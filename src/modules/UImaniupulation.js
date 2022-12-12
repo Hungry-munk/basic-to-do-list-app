@@ -2,7 +2,7 @@ import * as creation from "./domCreation"
 import * as func from "./function"
 import * as bundle from "./functionBundler"
 import * as str from "./storage"
-import * as cls from "./classes"
+import {isToday , isThisWeek} from "date-fns"
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -93,25 +93,63 @@ export function addProjects(...projects) {
     const projectContainer = document.querySelector(".projects")
     projects.forEach(project=>{
         if (project.title == "Home") return
-        projectContainer.appendChild(project.projectHTML)
+        const projectElement = project.projectHTML;
+        const trashIcon = projectElement.querySelector(".bin")
+        const taskCounter = projectElement.querySelector(".taskCounter")
+        
+        projectElement.setAttribute("project",`${project.title}`)
+        trashIcon.addEventListener("click",func.removeProject.bind(project))
+        taskCounter.textContent = project.tasks.length
+
+        projectContainer.appendChild(projectElement)
     })
 }
 // task chaning module
-export const taskskUi = ((masterObj)=>{
+export const render = ((masterObj)=>{
     const SelectionTitle = document.querySelector("h2.selctionTitle")
     const tasksContainer = document.querySelector(".tasks")
-    function renderHome() {
+    function homeTasks() {
         tasksContainer.innerHTML=""
         masterObj.tasks.forEach(task=>{
-            // tasksContainer.appendChild((Object.assign(
-            //     new cls.task, task)).taskHTML);
             tasksContainer.appendChild(task.taskHTML);
         })
-    } 
+    }
+    
+    function todayTasks(){
+        tasksContainer.innerHTML=""
+        masterObj.tasks.forEach(task=>{
+            if (isToday(new Date(task.dueDate)))
+                tasksContainer.appendChild(task.taskHTML);
+        })
+    }
+
+    function weekTasks(){
+        tasksContainer.innerHTML=""
+        masterObj.tasks.forEach(task=>{
+            if (isThisWeek(new Date(task.dueDate)))
+                tasksContainer.appendChild(task.taskHTML);
+        })
+    }
+
+    function completedTasks () {
+        tasksContainer.innerHTML=""
+        masterObj.tasks.forEach(task=>{
+            if (task.completion)
+                tasksContainer.appendChild(task.taskHTML);
+        })
+    }
+
+    function projectTasks (project) {
+
+    }
 
 
     return {
-        renderHome,
+        homeTasks,
+        todayTasks,
+        weekTasks,
+        completedTasks,
+        projectTasks,
 
     }
 })(str.masterObject)
