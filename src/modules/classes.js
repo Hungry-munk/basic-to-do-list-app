@@ -30,6 +30,7 @@ export class task {
         this.project = project
         this.completion =  false;
     }
+
      
     get taskHTML () {
         return creation.createTask(
