@@ -9,6 +9,8 @@ export function createFirstTimeMasterObj() {
     // adding example task
     const exampleTask = new cls.task("exampleTask","testing please work", "medium","12/12/12","Home")
     masterObject.projects[0].tasks.push(exampleTask)
+    // just to make sure the user didnt change the local storage
+    localStorage.clear()                        
     localStorage.masterObject = JSON.stringify(masterObject)    
     return masterObject
 }
@@ -26,19 +28,21 @@ export function createProject(inputValue){
 }
 
 export function removeProject(event) {
+    // getting index and chcking exsistance
     const removedProjectIndex = str.masterObject.projects.indexOf(this)
 
     if (removedProjectIndex != -1) {
         str.masterObject.projects.splice(removedProjectIndex,1)
-        event.target.removeEventListener('click',removeProject)
+        event.target.removeEventListener('click',removeProject.bind(this))
         // removing it from DOM
         const projects = document.querySelector(".projects")
         const removedProject = event.target.parentElement
         projects.removeChild(removedProject)
 
         // save changes
-        str.saveMasterObject()
+        str.saveMasterObject() 
     }
+    event.stopPropagation()
 }
 
 export function createTask(title,description,priority,dueDate,project) {

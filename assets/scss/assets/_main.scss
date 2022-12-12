@@ -29,6 +29,11 @@ main#main {
         height: 100%;
         z-index: 1;
 
+        .active {
+            background-color: rgba(s.$white, 1);
+
+        }
+
         // sidebar stuff
         ul.primarySelectors {
             @include s.flexColoumn;

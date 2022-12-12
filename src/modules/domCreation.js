@@ -48,8 +48,9 @@ export function createTaskModal(masterObj){
     masterObj.projects.forEach(project => {
         const option = document.createElement("option")
         option.textContent = project.title
+        option.value = project.title
         // default option
-        if (project.title == "Home") option.selected = true
+        if (project.title == masterObject.currentProject) option.selected = true
 
         projectSelector.appendChild(option)
     });
@@ -74,7 +75,7 @@ export function createProjectCreator () {
 }
 
 export function createProject(projectTitle) {
-    const projectHTML = document.createElement("div")
+    const projectHTML = document.createElement("li")
     projectHTML.classList.add("project")
     projectHTML.innerHTML = `
         <i class="fa-solid fa-circle"></i>
@@ -88,7 +89,7 @@ export function createProject(projectTitle) {
 export function createTask(title,priority,dueDate,project,completion) {
     const task = document.createElement("div")
     task.setAttribute("project",`${project}`)
-    task.classList.add("task")
+    task.classList.add("task",`${priority}`)
     if (completion) task.classList.add("completed")
     task.innerHTML = `
         <i class="fa-regular fa-square ${priority} "></i>

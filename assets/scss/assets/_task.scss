@@ -35,18 +35,40 @@ div.taskContainer {
                 border-bottom: 1px solid;
                 border-color: s.$gray;
 
+                &.low{
+                    i:first-child{color: s.$green;}
+                    .taskDetails{
+                        border-color: s.$green;
+                        &:hover {background-color: s.$green;}
+                    }
+                }
+                &.medium{
+                    i:first-child{color: orange;}
+                    .taskDetails{
+                        border-color: orange;
+                        &:hover {background-color: orange}
+                    }
+                }
+                &.high{
+                    i:first-child{color: s.$theme;}
+                    .taskDetails{
+                        border-color: s.$theme;
+                        &:hover {background-color:s.$theme}
+                    }
+                }
+                &.none{
+                    i:first-child{color: black;}
+                    .taskDetails{
+                        border-color: black;
+                        &:hover {background-color:black}
+                    }
+                }
 
                 i {
                     transition: inherit;                    
                     &:hover {cursor: pointer;}
                     &.edit:hover{color: s.$green;}
                     &.bin:hover{color: s.$theme;}
-
-                    &:first-child{
-                        &.high {color: s.$theme;}
-                        &.middle {color: orange;}
-                        &.low {color: s.$green;}
-                    }
                 }
 
 
@@ -60,10 +82,15 @@ div.taskContainer {
                         overflow: hidden ;
                         position: relative;
                     }
+
+                    &.taskDate{
+                        min-width: 64px;
+                        text-align: center;
+                    }
                 }
 
                 button.taskDetails {
-                    border: s.$green solid 2px;
+                    border: solid 2px;
                     padding: 1.5px 5px;
                     border-radius: s.$borderRadius;
                     transition: inherit;
@@ -71,7 +98,6 @@ div.taskContainer {
 
                     &:hover {
                         cursor: pointer;
-                        background-color: s.$green;
                         color:white ;
                     }
                 }        

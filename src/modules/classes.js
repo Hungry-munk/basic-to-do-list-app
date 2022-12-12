@@ -56,7 +56,7 @@ export class masterObject {
     }
 
     changeCurrentProject(newCurrentProject) {
-        this.currentProject =newCurrentProject
+        this.currentProject = newCurrentProject
     }
 
 }

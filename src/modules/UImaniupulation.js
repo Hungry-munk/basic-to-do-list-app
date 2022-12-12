@@ -98,51 +98,85 @@ export function addProjects(...projects) {
         const taskCounter = projectElement.querySelector(".taskCounter")
         
         projectElement.setAttribute("project",`${project.title}`)
+        projectElement.addEventListener("click", render.projectTasks.bind(project))
         trashIcon.addEventListener("click",func.removeProject.bind(project))
         taskCounter.textContent = project.tasks.length
 
         projectContainer.appendChild(projectElement)
     })
 }
-// task chaning module
+
+export function changeActivatedProject(projectName,element) {
+    const activatedProject = document.querySelector(".active")
+    activatedProject.classList.remove("active")
+    str.masterObject.changeCurrentProject(projectName)
+    element.closest("li").classList.add("active")
+}
+ // task chaning module
 export const render = ((masterObj)=>{
-    const SelectionTitle = document.querySelector("h2.selctionTitle")
+    const selectionTitle = document.querySelector("h2.selectionTitle")
     const tasksContainer = document.querySelector(".tasks")
-    function homeTasks() {
+
+    function homeTasks(event) {
         tasksContainer.innerHTML=""
+        selectionTitle.textContent = "Home"
+        const eventElement = event instanceof HTMLElement ?
+            event : event.target;
+
+        changeActivatedProject("Home",eventElement)
+
         masterObj.tasks.forEach(task=>{
             tasksContainer.appendChild(task.taskHTML);
         })
     }
     
-    function todayTasks(){
+    function todayTasks(event){
         tasksContainer.innerHTML=""
+        selectionTitle.textContent = "Today"
+        changeActivatedProject("Today",event.target)
+
         masterObj.tasks.forEach(task=>{
             if (isToday(new Date(task.dueDate)))
                 tasksContainer.appendChild(task.taskHTML);
         })
     }
 
-    function weekTasks(){
+    function weekTasks(event){
         tasksContainer.innerHTML=""
+        selectionTitle.textContent = "Upcoming"
+        changeActivatedProject("Upcoming",event.target)
+
         masterObj.tasks.forEach(task=>{
             if (isThisWeek(new Date(task.dueDate)))
                 tasksContainer.appendChild(task.taskHTML);
         })
     }
 
-    function completedTasks () {
+    function completedTasks (event) {
         tasksContainer.innerHTML=""
+        selectionTitle.textContent = "Completed"
+        changeActivatedProject("Completed",event.target)
+        
         masterObj.tasks.forEach(task=>{
             if (task.completion)
                 tasksContainer.appendChild(task.taskHTML);
         })
     }
 
-    function projectTasks (project) {
 
+    function projectTasks (event) {
+        tasksContainer.innerHTML = ""
+        selectionTitle.textContent = this.title
+        changeActivatedProject(this.title,event.target)
+        this.tasks.forEach(task=>{
+            tasksContainer.appendChild(task.taskHTML)
+        })
+        
     }
 
+    function  updateTaskCounters() {
+
+    }
 
     return {
         homeTasks,
