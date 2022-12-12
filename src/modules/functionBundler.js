@@ -50,7 +50,7 @@ export function createTask(event) {
         projectSelected.value
     )
     str.saveTask(newTask,str.masterObject)
-    // render new tasks function
+    UI.render.updateTasks(newTask)
     UI.removeModal()
 
 }

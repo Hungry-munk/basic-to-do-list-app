@@ -1,5 +1,6 @@
 import * as cls from "./classes";
-import * as str from "./storage"
+import * as str from "./storage";
+import { format } from "date-fns";
 
 export function createFirstTimeMasterObj() {
     // creating master object
@@ -78,7 +79,6 @@ function checkRepeatedProjectName (name) {
 
 export function formatDate (date) {
     if (!date) return "not due"
-    //replacing - with /
-    return date.replace(/-/g, "/")
+    return format(new Date(date), "dd/MM/yy");
 }
 
