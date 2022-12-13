@@ -153,6 +153,7 @@ function taskDomEvent(task){
 
 export const taskManipulation = (()=>{
     const tasksContainer = document.querySelector(".tasks")
+    const backgroundModal = document.querySelector("#modalBackground")
 
     function deleteTask (event) {
         const taskElement = event.target.parentElement
@@ -165,7 +166,6 @@ export const taskManipulation = (()=>{
     }
 
     function viewDetails (event) {
-        const backgroundModal = document.querySelector("#modalBackground")
         if (backgroundModal.childNodes.length > 0) return
         const detailsELement = creation.createDetailsModal(
             this.title,
@@ -176,16 +176,29 @@ export const taskManipulation = (()=>{
             this.completion
         )
 
-        const cross = backgroundModal.querySelector(".fa-x")
+        const cross = detailsELement.querySelector(".fa-x")
 
-        cross.addEventListener('click', removeModal)
-
+        cross.addEventListener('click', removeViewDetails)
+        backgroundModal.appendChild(detailsELement)
         backgroundModal.style.display = "flex"
+    }
+
+    function removeViewDetails() {
+        const cross = this.querySelector(".fa-x")
+        const modal = this.parentElement.parentElement
+        
+        this.removeEventListener("click",removeViewDetails)
+
+        backgroundModal.removeChild(modal)
+        backgroundModal.style.display = "none"
     }
 
     return {
         deleteTask,
         viewDetails,
+        removeViewDetails,
+
+
 
     }
 })()
