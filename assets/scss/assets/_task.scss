@@ -53,23 +53,22 @@ div.taskContainer {
 
                     .fa-square{
                         background-color: currentColor;
-                        margin-right: 1px;
                         height: 14px;
-                        width: 13px;
-                        border-radius: 3px;
+                        width: 14px;
+                        border-radius: 2px;
                         position: relative;
-                        &::after {
+                        &::before {
                             position: absolute;
-                            top: 0px;
-                            left: 0px;
-                            content: " ";
+                            top: 50% ;
+                            left: 50%;
+                            content: "";
                             height: 100%;
                             width: 100%;
-                            // background-color: currentColor;
                             border-radius:3px ;
                             background-image: url(https://bscottnz.github.io/todo/img/check.png);
                             background-repeat: no-repeat;
                             background-size:contain ;
+                            transform: translateX(-50%) translateY(-50%);
                         }
                     }   
                 }
