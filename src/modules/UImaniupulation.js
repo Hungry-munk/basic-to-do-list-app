@@ -193,6 +193,8 @@ export const taskManipulation = (()=>{
         backgroundModal.style.display = "none"
     }
 
+
+
     return {
         deleteTask,
         viewDetails,
@@ -226,7 +228,7 @@ export const render = ((masterObj) => {
 
         masterObj.tasks.forEach(task => {
             if (isToday(new Date(task.dueDate)))
-                tasksContainer.appendChild(task.taskHTML);
+                tasksContainer.appendChild(taskDomEvent(task));
         })
     }
 
@@ -237,7 +239,7 @@ export const render = ((masterObj) => {
 
         masterObj.tasks.forEach(task => {
             if (isThisWeek(new Date(task.dueDate)))
-                tasksContainer.appendChild(task.taskHTML);
+                tasksContainer.appendChild(taskDomEvent(task));
         })
     }
 
@@ -248,7 +250,7 @@ export const render = ((masterObj) => {
 
         masterObj.tasks.forEach(task => {
             if (task.completion)
-                tasksContainer.appendChild(task.taskHTML);
+                tasksContainer.appendChild(taskDomEvent(task));
         })
     }
 
@@ -258,7 +260,7 @@ export const render = ((masterObj) => {
         selectionTitle.textContent = this.title
         changeActivatedProject(this.title, event.target)
         this.tasks.forEach(task => {
-            tasksContainer.appendChild(task.taskHTML)
+            tasksContainer.appendChild(taskDomEvent(task))
         })
 
     }
@@ -268,18 +270,18 @@ export const render = ((masterObj) => {
         if (masterObj.currentProject == theTask.project) {
             tasksContainer.innerHTML = ""
             masterObj.projects.find(project => project.title == theTask.project
-            ).tasks.forEach(task => tasksContainer.appendChild(task.taskHTML));
+            ).tasks.forEach(task => tasksContainer.appendChild(taskDomEvent(task)));
         } else if (masterObj.currentProject == "Today" && isToday(new Date(theTask.dueDate))) {
             tasksContainer.innerHTML = ""
             masterObj.tasks.forEach(task => {
                 if (isToday(new Date(task.dueDate)))
-                    tasksContainer.appendChild(task.taskHTML);
+                    tasksContainer.appendChild(taskDomEvent(task));
             });
         } else if (masterObj.currentProject == "Upcoming" && isThisWeek(new Date(theTask.dueDate))) {
             tasksContainer.innerHTML = ""
             masterObj.tasks.forEach(task=>{
                 if (isThisWeek(new Date(task.dueDate))) 
-                    tasksContainer.appendChild(task.taskHTML);
+                    tasksContainer.appendChild(taskDomEvent(task));
             });
         }
     }
