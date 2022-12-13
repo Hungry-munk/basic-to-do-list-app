@@ -3,6 +3,7 @@ import * as func from "./function"
 import * as bundle from "./functionBundler"
 import * as str from "./storage"
 import { isToday, isThisWeek } from "date-fns"
+import { task } from "./classes"
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -135,6 +136,39 @@ export function projectTaskCounter(event) {
     taskCounter.setAttribute("taskCount", `${this.tasks.length}`)
 }
 // task chaning module
+
+function taskDomEvent(task){
+    const taskElement = task.taskHTML
+    // manipulation features
+    const binBtn = taskElement.querySelector(".bin")
+    const squareBtn = taskElement.querySelector(".fa-square")
+    const editBtn = taskElement.querySelector(".edit")
+    const taskDetailsbtn = taskElement.querySelector(".taskDetails")
+    //  event listeners
+    binBtn.addEventListener("click",taskManipulation.deleteTask.bind(task))
+
+
+    return taskElement
+}
+
+export const taskManipulation = (()=>{
+    const tasksContainer = document.querySelector(".tasks")
+
+    function deleteTask (event) {
+        const taskElement = event.target.parentElement
+        const taskProject = str.masterObject.projects.find(project=>
+            project.tasks.includes(this));
+        taskProject.tasks.splice(taskProject.tasks.indexOf(this),1)
+        tasksContainer.removeChild(taskElement)
+        event.target.removeEventListener("click", taskManipulation.deleteTask)
+        str.saveMasterObject()
+    }
+    return {
+        deleteTask,
+
+    }
+})()
+
 export const render = ((masterObj) => {
     const selectionTitle = document.querySelector("h2.selectionTitle")
     const tasksContainer = document.querySelector(".tasks")
@@ -147,7 +181,7 @@ export const render = ((masterObj) => {
         changeActivatedProject("Home", eventElement)
 
         masterObj.tasks.forEach(task => {
-            tasksContainer.appendChild(task.taskHTML);
+            tasksContainer.appendChild(taskDomEvent(task));
         })
     }
 

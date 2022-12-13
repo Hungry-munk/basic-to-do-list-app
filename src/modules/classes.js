@@ -39,6 +39,7 @@ export class task {
             this.dueDate,
             this.project,
             this.completion,
+
         )
     }
 

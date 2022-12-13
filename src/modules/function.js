@@ -82,3 +82,6 @@ export function formatDate (date) {
     return format(new Date(date), "dd/MM/yy");
 }
 
+export function findRemoveTask(task ) {
+    
+}
