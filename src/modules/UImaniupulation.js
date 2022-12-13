@@ -147,6 +147,7 @@ function taskDomEvent(task){
     //  event listeners
     binBtn.addEventListener("click",taskManipulation.deleteTask.bind(task))
     taskDetailsbtn.addEventListener("click",taskManipulation.viewDetails.bind(task))
+    squareBtn.addEventListener("click",taskManipulation.changeTaskStatus.bind(task))
 
     return taskElement
 }
@@ -193,13 +194,20 @@ export const taskManipulation = (()=>{
         backgroundModal.style.display = "none"
     }
 
+    function changeTaskStatus(event) {
+        event.target.parentElement.classList.toggle("taskCompleted")
+        this.completion = !this.completion
+        // if (str.masterObject.currentProject == "Completed") 
+        render.updateTasks(this)
+        str.saveMasterObject()
+    }
 
 
     return {
         deleteTask,
         viewDetails,
         removeViewDetails,
-
+        changeTaskStatus,
 
 
     }
@@ -266,8 +274,12 @@ export const render = ((masterObj) => {
     }
 
     function updateTasks(theTask) {
-        
-        if (masterObj.currentProject == theTask.project) {
+
+        if (masterObj.currentProject == "Home"){
+            tasksContainer.innerHTML = ""
+            masterObj.tasks.forEach(task => tasksContainer.appendChild(taskDomEvent(task)))
+        }
+        else if (masterObj.currentProject == theTask.project) {
             tasksContainer.innerHTML = ""
             masterObj.projects.find(project => project.title == theTask.project
             ).tasks.forEach(task => tasksContainer.appendChild(taskDomEvent(task)));
@@ -283,6 +295,12 @@ export const render = ((masterObj) => {
                 if (isThisWeek(new Date(task.dueDate))) 
                     tasksContainer.appendChild(taskDomEvent(task));
             });
+        } else if (masterObj.currentProject == "Completed") {
+            tasksContainer.innerHTML = ""
+            masterObj.tasks.forEach(task => {
+                if (task.completion)
+                    tasksContainer.appendChild(taskDomEvent(task));
+            })
         }
     }
     return {

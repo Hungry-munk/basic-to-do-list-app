@@ -34,7 +34,45 @@ div.taskContainer {
                 padding: 0.7em 0 0.7em;
                 border-bottom: 1px solid;
                 border-color: s.$gray;
+                position: relative;
+                
+                transition: transform 250ms ease-in;
 
+
+                &.completed {
+
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        left: 1.8rem;
+                        height: 10px;
+                        width:calc(100% - 1.8rem);
+                        height: 2px;
+                        background-color: black;
+                    }
+
+                    .fa-square{
+                        background-color: currentColor;
+                        margin-right: 1px;
+                        height: 14px;
+                        width: 13px;
+                        border-radius: 3px;
+                        position: relative;
+                        &::after {
+                            position: absolute;
+                            top: 0px;
+                            left: 0px;
+                            content: " ";
+                            height: 100%;
+                            width: 100%;
+                            // background-color: currentColor;
+                            border-radius:3px ;
+                            background-image: url(https://bscottnz.github.io/todo/img/check.png);
+                            background-repeat: no-repeat;
+                            background-size:contain ;
+                        }
+                    }   
+                }
                 &.low{
                     i:first-child{color: s.$green;}
                     .taskDetails{
