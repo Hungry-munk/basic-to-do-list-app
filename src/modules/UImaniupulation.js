@@ -146,7 +146,7 @@ function taskDomEvent(task){
     const taskDetailsbtn = taskElement.querySelector(".taskDetails")
     //  event listeners
     binBtn.addEventListener("click",taskManipulation.deleteTask.bind(task))
-
+    taskDetailsbtn.addEventListener("click",taskManipulation.viewDetails.bind(task))
 
     return taskElement
 }
@@ -163,8 +163,29 @@ export const taskManipulation = (()=>{
         event.target.removeEventListener("click", taskManipulation.deleteTask)
         str.saveMasterObject()
     }
+
+    function viewDetails (event) {
+        const backgroundModal = document.querySelector("#modalBackground")
+        if (backgroundModal.childNodes.length > 0) return
+        const detailsELement = creation.createDetailsModal(
+            this.title,
+            this.details,
+            this.priority,
+            this.dueDate,
+            this.project,
+            this.completion
+        )
+
+        const cross = backgroundModal.querySelector(".fa-x")
+
+        cross.addEventListener('click', removeModal)
+
+        backgroundModal.style.display = "flex"
+    }
+
     return {
         deleteTask,
+        viewDetails,
 
     }
 })()

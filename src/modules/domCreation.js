@@ -1,4 +1,5 @@
 import { masterObject } from "./storage"
+import { format } from "date-fns"
 
 export function createTaskModal(masterObj){
     const taskCreator = document.createElement("div")
@@ -100,4 +101,27 @@ export function createTask(title,priority,dueDate,project,completion) {
         <i class="fa-solid fa-trash bin"></i>
     `
     return task
+}
+
+export function createDetailsModal(title,details,priority,dueDate,project,completion) {
+    const detailsElement = document.createElement("div")
+    detailsElement.classList.add("modal", "detailsModal")
+    detailsElement.innerHTML = `
+    <div class="taskDetailsHeader modalHeader">
+        <div>Task Details</div>
+        <i class="fa-solid fa-x"></i>
+    </div>
+    <div class = "taskDetailsInformation">
+        <div class="taskDetailsTitle">${title}</div>
+        <p class="taskDetailsDetails">${details?details:"no extra details..."}</p>
+        <div class= "taskDetailsOther">
+           <div class = "taskPrioirity">Task priority : <span>${priority}</span></div>
+           <div class = "taskDueDate">Task due date : <span>${dueDate}</span></div>
+           <div class = "taskProject">Task project : <span>${project}</span></div>
+           <div class = "taskPrioirity">Task completion : <span>${completion?"Task is completed":"Task is not completed"}</span></div>
+        </div>
+    </div>
+    `
+
+    return detailsElement
 }
