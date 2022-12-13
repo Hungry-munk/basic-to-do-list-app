@@ -169,7 +169,7 @@ export const taskManipulation = (()=>{
         if (backgroundModal.childNodes.length > 0) return
         const detailsELement = creation.createDetailsModal(
             this.title,
-            this.details,
+            this.description,
             this.priority,
             this.dueDate,
             this.project,

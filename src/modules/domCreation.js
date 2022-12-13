@@ -9,7 +9,7 @@ export function createTaskModal(masterObj){
             <div>New Task</div>
             <i class="fa-solid fa-x"></i>
         </div>
-        <form class="taskCreationForm">
+        <form class="taskCreationForm modalInfo">
             <div class="taskDetails1">
                 <label for="taskTitle">Title:</label>
                 <input class="taskEntry" type="text" id="taskTitle" placeholder="e.g. Pay bills" spellcheck = "true">
@@ -111,15 +111,13 @@ export function createDetailsModal(title,details,priority,dueDate,project,comple
         <div>Task Details</div>
         <i class="fa-solid fa-x"></i>
     </div>
-    <div class = "taskDetailsInformation">
-        <div class="taskDetailsTitle">${title}</div>
-        <p class="taskDetailsDetails">${details?details:"no extra details..."}</p>
-        <div class= "taskDetailsOther">
-           <div class = "taskPrioirity">Task priority : <span>${priority}</span></div>
-           <div class = "taskDueDate">Task due date : <span>${dueDate}</span></div>
-           <div class = "taskProject">Task project : <span>${project}</span></div>
-           <div class = "taskPrioirity">Task completion : <span>${completion?"Task is completed":"Task is not completed"}</span></div>
-        </div>
+    <div class = "taskDetailsInformation modalInfo">
+        <h2 class="taskDetailsTitle">${title}</h2>
+        <p class="taskDetailsDetails">${details ? details : "no description..."}</p>
+        <div class = "taskPriority">Task priority : <span class="${priority}">${priority}</span></div>
+        <div class = "taskDueDate">Task due date : <span>${dueDate}</span></div>
+        <div class = "taskProject">Task project : <span>${project}</span></div>
+        <div class = "taskCompletion">Task completion : <span class = "${completion}">${completion?"task is completed":"task is not completed"}</span></div>
     </div>
     `
 
