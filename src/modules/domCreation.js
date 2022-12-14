@@ -123,3 +123,69 @@ export function createDetailsModal(title,details,priority,dueDate,project,comple
 
     return detailsElement
 }
+
+export function taskEditor(masterObj,title,description,priority,dueDate,project) {
+    const taskEditor = document.createElement("div")
+    taskEditor.classList.add("modal")
+    taskEditor.innerHTML = `
+        <div class="taskEditorHeader modalHeader">
+            <div>New Task</div>
+            <i class="fa-solid fa-x"></i>
+        </div>
+        <form class="taskEditForm modalInfo">
+            <div class="editDetails1">
+                <label for="taskTitle">Title:</label>
+                <input class="taskEntry" type="text" id="taskTitle" placeholder="e.g. Pay bills" spellcheck = "true">
+                <span class="errorMsg"></span>
+
+                <label for="editDescription">Description:</label>
+                <textarea class="taskEntry" id="taskDescription" placeholder="e.g. internet, phone, rent, etc" spellcheck = "true"></textarea>
+
+            </div>
+            <div class="editDetails2">
+                <label for="dueDate">Due Date:</label>
+                <input type="date" class="taskEntry" id="dueDate">
+
+                <label for="priority">Priority:</label>
+                <select id="priority" class="taskEntry">
+                    <option value="none" selected>None</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <label for="projectSelection">Project:</label>
+                <select id="projectSelection" class="taskEntry">
+                
+                </select>
+            </div>
+            <div class="taskCreationDecision">
+                <button type="button" class="cancelEditBtn modalBtn cancelModalBtn">Cancel</button>
+                <button type="button" class="editTaskBtn modalBtn addModalBtn">Edit task</button>
+            </div>
+
+        </form>
+
+    `
+
+    taskEditor.querySelector("#taskTitle").value = title
+    taskEditor.querySelector("#taskDescription").value = description
+    taskEditor.querySelector("#dueDate").value = dueDate == "not due"? "" : new Date(dueDate);
+
+    // priority selector
+    const prioritySelector = taskEditor.querySelector("#priority");
+    ([...prioritySelector.children].find(option=>option.value=priority).selected = true);
+
+    //project selection
+    const projectSelector = taskEditor.querySelector("#projectSelection")
+    masterObj.projects.forEach(project => {
+        const option = document.createElement("option")
+        option.textContent = project.title
+        option.value = project.title
+        // current project
+        if (project.title == project) option.selected = true
+        projectSelector.appendChild(option)
+    });
+
+    return taskEditor
+}

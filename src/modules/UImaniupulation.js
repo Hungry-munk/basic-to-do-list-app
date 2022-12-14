@@ -148,6 +148,7 @@ function taskDomEvent(task){
     binBtn.addEventListener("click",taskManipulation.deleteTask.bind(task))
     taskDetailsbtn.addEventListener("click",taskManipulation.viewDetails.bind(task))
     squareBtn.addEventListener("click",taskManipulation.changeTaskStatus.bind(task))
+    editBtn.addEventListener("click",taskManipulation.viewTaskEditor.bind(task))
 
     return taskElement
 }
@@ -185,7 +186,6 @@ export const taskManipulation = (()=>{
     }
 
     function removeViewDetails() {
-        const cross = this.querySelector(".fa-x")
         const modal = this.parentElement.parentElement
         
         this.removeEventListener("click",removeViewDetails)
@@ -197,9 +197,31 @@ export const taskManipulation = (()=>{
     function changeTaskStatus(event) {
         event.target.parentElement.classList.toggle("taskCompleted")
         this.completion = !this.completion
-        // if (str.masterObject.currentProject == "Completed") 
         render.updateTasks(this)
         str.saveMasterObject()
+    }
+
+    function viewTaskEditor (event) {
+        const editElement = creation.taskEditor(
+            str.masterObject,
+            this.title,
+            this.description,
+            this.priority,
+            this.dueDate,
+            this.project
+        )
+        const cross = editElement.querySelector(".fa-x")
+        const cancelBtn = editElement.querySelector(".cancelEditBtn")
+        const editTaskBtn = document.querySelector(".editTaskBtn")
+
+
+        backgroundModal.appendChild(editElement)
+        backgroundModal.style.display = "flex"
+
+    }
+
+    function removeTaskEditor () {
+
     }
 
 
@@ -208,7 +230,8 @@ export const taskManipulation = (()=>{
         viewDetails,
         removeViewDetails,
         changeTaskStatus,
-
+        viewTaskEditor,
+        removeTaskEditor
 
     }
 })()

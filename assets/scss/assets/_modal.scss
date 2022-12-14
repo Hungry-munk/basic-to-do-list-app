@@ -87,14 +87,14 @@ div#modalBackground {
         }
     }
 
-    form.taskCreationForm {
+    form {
         display: grid;
         grid-template:
             "top1 top2" auto "bottom bottom" auto / 1fr 1fr;
         gap: 15px;
 
 
-        .taskDetails1 {
+        .taskDetails, .editDetails1 {
             grid-area: top1;
             @include s.flexColoumn;
 
@@ -112,7 +112,7 @@ div#modalBackground {
             }
         }
 
-        .taskDetails2 {
+        .taskDetails2, .editDetails2 {
             grid-area: top2;
             @include s.flexColoumn;
         }
