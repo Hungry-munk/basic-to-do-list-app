@@ -29,27 +29,6 @@ export function createProject(inputValue){
     return newProject
 }
 
-export function removeProject(event) {
-    // getting index and chcking exsistance
-    const removedProjectIndex = str.masterObject.projects.indexOf(this)
-
-    if (removedProjectIndex != -1) {
-        str.masterObject.projects.splice(removedProjectIndex,1)
-        event.target.removeEventListener('click',removeProject.bind(this))
-        // removing it from DOM
-        const projects = document.querySelector(".projects")
-        const removedProject = event.target.parentElement
-        projects.removeChild(removedProject)
-
-        // save changes
-        str.saveMasterObject() 
-    }
-
-    if (this.title = str.masterObject.currentProject) 
-
-    event.stopPropagation()
-}
-
 export function createTask(title,description,priority,dueDate,project) {
     const newTask = new cls.task(title,description,priority,dueDate,project)
     // fir expansion id needed

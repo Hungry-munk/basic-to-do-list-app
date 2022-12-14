@@ -25,6 +25,8 @@ export function displayProjects(event) {
     }
 }
 
+
+
 export function displayModal(event) {
     const backgroundModal = document.querySelector("#modalBackground")
     if (backgroundModal.childNodes.length > 0) return
@@ -100,15 +102,40 @@ export function addProjects(...projects) {
         projectElement.setAttribute("project", `${project.title}`)
         projectElement.addEventListener("click", render.projectTasks.bind(project))
         projectElement.addEventListener("mouseenter", projectTaskCounter.bind(project))
-        trashIcon.addEventListener("click", func.removeProject.bind(project))
+        trashIcon.addEventListener("click", removeProject.bind(project))
         // taskCounter.textContent = project.tasks.length
 
         projectContainer.appendChild(projectElement)
     })
 }
 
+export function removeProject(event) {
+    // getting index and chcking exsistance
+    const removedProjectIndex = str.masterObject.projects.indexOf(this)
+
+    if (removedProjectIndex != -1) {
+        str.masterObject.projects.splice(removedProjectIndex,1)
+        event.target.removeEventListener('click',removeProject.bind(this))
+        // removing it from DOM
+        const projects = document.querySelector(".projects")
+        const removedProject = event.target.parentElement
+        if (this.title = str.masterObject.currentProject){
+            render.homeTasks(event);
+            changeActivatedProject("Home",document.querySelector(".fa-solid"))
+        }
+        projects.removeChild(removedProject)
+
+        // save changes
+        str.saveMasterObject() 
+    }
+
+
+    event.stopPropagation()
+}
+
 export function changeActivatedProject(projectName, element) {
-    const activatedProject = document.querySelector(".active")
+    const activatedProject = document.querySelector(".active") ? 
+        document.querySelector(".active") : element
     activatedProject.classList.remove("active")
     str.masterObject.changeCurrentProject(projectName)
     element.closest("li").classList.add("active")
