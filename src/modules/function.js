@@ -1,6 +1,7 @@
 import * as cls from "./classes";
 import * as str from "./storage";
 import { format } from "date-fns";
+// import * as UI from "./UImaniupulation"
 
 export function createFirstTimeMasterObj() {
     // creating master object
@@ -43,6 +44,9 @@ export function removeProject(event) {
         // save changes
         str.saveMasterObject() 
     }
+
+    if (this.title = str.masterObject.currentProject) 
+
     event.stopPropagation()
 }
 
@@ -82,6 +86,6 @@ export function formatDate (date) {
     return format(new Date(date), "dd/MM/yy");
 }
 
-export function findRemoveTask(task ) {
-    
+export function formatDate2(date) {
+    return `20${date.split("/").reverse()}`.replace(/,/g,"-")
 }

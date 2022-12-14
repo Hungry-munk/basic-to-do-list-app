@@ -1,5 +1,6 @@
 import { masterObject } from "./storage"
 import { format } from "date-fns"
+import { formatDate, formatDate2 } from "./function"
 
 export function createTaskModal(masterObj){
     const taskCreator = document.createElement("div")
@@ -171,7 +172,7 @@ export function taskEditor(masterObj,title,description,priority,dueDate,project)
     taskEditor.querySelector("#taskTitle").value = title
     taskEditor.querySelector("#taskDescription").value = description
     taskEditor.querySelector("#dueDate").value = dueDate=="not due"?
-        "":`20${dueDate.split("/").reverse()}`.replace(/,/g,"-");
+        "":formatDate2(dueDate);
         
     ([...taskEditor.querySelector("#priority").children].find(
         thepriority=>thepriority.value == priority)).selected = true;

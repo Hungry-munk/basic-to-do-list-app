@@ -96,7 +96,6 @@ export function addProjects(...projects) {
         if (project.title == "Home") return
         const projectElement = project.projectHTML;
         const trashIcon = projectElement.querySelector(".bin")
-        const taskCounter = projectElement.querySelector(".taskCounter")
 
         projectElement.setAttribute("project", `${project.title}`)
         projectElement.addEventListener("click", render.projectTasks.bind(project))
@@ -121,10 +120,10 @@ export function updateDefualtTaskCounters() {
         taskCounter.setAttribute("taskCount", `${str.masterObject.tasks.length}`)
     } else if (this.classList.contains("today")) {
         taskCounter.setAttribute("taskCount", `${str.masterObject.tasks.filter(task => (
-            isToday(new Date(task.dueDate)))).length}`);
+            isToday(new Date(func.formatDate2(task.dueDate))))).length}`);
     } else if (this.classList.contains("upcoming")) {
         taskCounter.setAttribute("taskCount", `${str.masterObject.tasks.filter(task => (
-            isThisWeek(new Date(task.dueDate)))).length}`);
+            isThisWeek(new Date(func.formatDate2(task.dueDate))))).length}`);
     } else if (this.classList.contains("completed")) {
         taskCounter.setAttribute("taskCount", `${str.masterObject.tasks.filter(task => (
             task.completion)).length}`);
@@ -164,6 +163,7 @@ export const taskManipulation = (()=>{
         taskProject.tasks.splice(taskProject.tasks.indexOf(this),1)
         tasksContainer.removeChild(taskElement)
         event.target.removeEventListener("click", taskManipulation.deleteTask)
+        render.updateTasks(this)
         str.saveMasterObject()
     }
 
@@ -195,9 +195,9 @@ export const taskManipulation = (()=>{
         this.description = description
         this.priority = priority
         this.dueDate = useableDate
-        this.project = project
-
+        
         render.updateTasks(this)
+        this.project = project
         str.saveMasterObject()
         removeTaskEditor()
     }
@@ -302,9 +302,8 @@ export const render = ((masterObj) => {
         tasksContainer.innerHTML = ""
         selectionTitle.textContent = "Today"
         changeActivatedProject("Today", event.target)
-
         masterObj.tasks.forEach(task => {
-            if (isToday(new Date(task.dueDate)))
+            if (isToday(new Date(func.formatDate2(task.dueDate))))
                 tasksContainer.appendChild(taskDomEvent(task));
         })
     }
@@ -315,7 +314,7 @@ export const render = ((masterObj) => {
         changeActivatedProject("Upcoming", event.target)
 
         masterObj.tasks.forEach(task => {
-            if (isThisWeek(new Date(task.dueDate)))
+            if (isThisWeek(new Date(func.formatDate2(task.dueDate))))
                 tasksContainer.appendChild(taskDomEvent(task));
         })
     }
@@ -351,16 +350,16 @@ export const render = ((masterObj) => {
             tasksContainer.innerHTML = ""
             masterObj.projects.find(project => project.title == theTask.project
             ).tasks.forEach(task => tasksContainer.appendChild(taskDomEvent(task)));
-        } else if (masterObj.currentProject == "Today" && isToday(new Date(theTask.dueDate))) {
+        } else if (masterObj.currentProject == "Today" ) {
             tasksContainer.innerHTML = ""
             masterObj.tasks.forEach(task => {
-                if (isToday(new Date(task.dueDate)))
+                if (isToday(new Date(func.formatDate2(task.dueDate))))
                     tasksContainer.appendChild(taskDomEvent(task));
             });
-        } else if (masterObj.currentProject == "Upcoming" && isThisWeek(new Date(theTask.dueDate))) {
+        } else if (masterObj.currentProject == "Upcoming" ) {
             tasksContainer.innerHTML = ""
             masterObj.tasks.forEach(task=>{
-                if (isThisWeek(new Date(task.dueDate))) 
+                if (isThisWeek(new Date(func.formatDate2(task.dueDate)))) 
                     tasksContainer.appendChild(taskDomEvent(task));
             });
         } else if (masterObj.currentProject == "Completed") {
