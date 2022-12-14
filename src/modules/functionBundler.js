@@ -49,6 +49,7 @@ export function createTask(event) {
         useableDate,
         projectSelected.value
     )
+    console.log(dueDate.value)
     str.saveTask(newTask,str.masterObject)
     UI.render.updateTasks(newTask)
     UI.removeModal()

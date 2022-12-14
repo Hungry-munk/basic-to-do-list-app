@@ -94,7 +94,7 @@ div#modalBackground {
         gap: 15px;
 
 
-        .taskDetails, .editDetails1 {
+        .taskDetails1, .editDetails1 {
             grid-area: top1;
             @include s.flexColoumn;
 

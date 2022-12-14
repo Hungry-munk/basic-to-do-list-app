@@ -452,19 +452,19 @@ div#modalBackground form {
   grid-template: "top1 top2" auto "bottom bottom" auto/1fr 1fr;
   gap: 15px;
 }
-div#modalBackground form .taskDetails, div#modalBackground form .editDetails1 {
+div#modalBackground form .taskDetails1, div#modalBackground form .editDetails1 {
   grid-area: top1;
   display: flex;
   flex-direction: column;
 }
-div#modalBackground form .taskDetails input#taskTitle, div#modalBackground form .editDetails1 input#taskTitle {
+div#modalBackground form .taskDetails1 input#taskTitle, div#modalBackground form .editDetails1 input#taskTitle {
   margin-bottom: 0;
 }
-div#modalBackground form .taskDetails span.errorMsg, div#modalBackground form .editDetails1 span.errorMsg {
+div#modalBackground form .taskDetails1 span.errorMsg, div#modalBackground form .editDetails1 span.errorMsg {
   color: #AE3932;
   font-size: 0.8rem;
 }
-div#modalBackground form .taskDetails label:last-of-type, div#modalBackground form .editDetails1 label:last-of-type {
+div#modalBackground form .taskDetails1 label:last-of-type, div#modalBackground form .editDetails1 label:last-of-type {
   margin-top: 0.6rem;
 }
 div#modalBackground form .taskDetails2, div#modalBackground form .editDetails2 {

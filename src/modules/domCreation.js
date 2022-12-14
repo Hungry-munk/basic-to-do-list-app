@@ -170,20 +170,22 @@ export function taskEditor(masterObj,title,description,priority,dueDate,project)
 
     taskEditor.querySelector("#taskTitle").value = title
     taskEditor.querySelector("#taskDescription").value = description
-    taskEditor.querySelector("#dueDate").value = dueDate == "not due"? "" : new Date(dueDate);
 
-    // priority selector
+    console.log(`20${dueDate.split("/").reverse()}"`.replace(/,/g,"-"))
+    
+    taskEditor.querySelector("#dueDate").value = dueDate=="not due"?"":`20${dueDate.split("/").reverse()}`.replace(/,/g,"-")
     const prioritySelector = taskEditor.querySelector("#priority");
-    ([...prioritySelector.children].find(option=>option.value=priority).selected = true);
+    ([...prioritySelector.children].find(thepriority=>thepriority.value == priority)).selected = true;
+    
 
     //project selection
     const projectSelector = taskEditor.querySelector("#projectSelection")
-    masterObj.projects.forEach(project => {
+    masterObj.projects.forEach(theProject => {
         const option = document.createElement("option")
-        option.textContent = project.title
-        option.value = project.title
+        option.textContent = theProject.title
+        option.value = theProject.title
         // current project
-        if (project.title == project) option.selected = true
+        if (theProject.title ==  project) option.selected = true
         projectSelector.appendChild(option)
     });
 
