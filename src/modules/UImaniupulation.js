@@ -167,6 +167,41 @@ export const taskManipulation = (()=>{
         str.saveMasterObject()
     }
 
+    function editTask (event) {
+        const title = document.querySelector("#taskTitle").value
+        const description = document.querySelector("#taskDescription").value
+        const priority = document.querySelector("#priority").value
+        const project = document.querySelector("#projectSelection").value
+        const date = document.querySelector("#dueDate").value
+        const useableDate = func.formatDate(date)
+
+        const taskNameInfo = func.checkNameValidity(title)
+
+        if (!taskNameInfo.validity) {
+            const errorMsg = document.querySelector("span.errorMsg")
+            errorMsg.textContent = taskNameInfo.message;
+            setTimeout(()=>{errorMsg.textContent=""},1200)
+            return
+        }
+
+        if (this.project != project) {
+            const currentProject = str.masterObject.projects.find(theProject=>theProject.title == this.project);
+            const movingProject = str.masterObject.projects.find(theProject=> theProject.title ==project)
+            currentProject.tasks.splice(currentProject.tasks.indexOf(this),1)
+            movingProject.tasks.push(this)
+        }
+        
+        this.title = title
+        this.description = description
+        this.priority = priority
+        this.dueDate = useableDate
+        this.project = project
+
+        render.updateTasks(this)
+        str.saveMasterObject()
+        removeTaskEditor()
+    }
+
     function viewDetails (event) {
         if (backgroundModal.childNodes.length > 0) return
         const detailsELement = creation.createDetailsModal(
@@ -212,16 +247,27 @@ export const taskManipulation = (()=>{
         )
         const cross = editElement.querySelector(".fa-x")
         const cancelBtn = editElement.querySelector(".cancelEditBtn")
-        const editTaskBtn = document.querySelector(".editTaskBtn")
+        const editTaskBtn = editElement.querySelector(".editTaskBtn")
 
+        cross.addEventListener("click",removeTaskEditor)
+        cancelBtn.addEventListener("click",removeTaskEditor)
+        editTaskBtn.addEventListener("click",editTask.bind(this))
 
         backgroundModal.appendChild(editElement)
         backgroundModal.style.display = "flex"
 
     }
 
-    function removeTaskEditor () {
+    function removeTaskEditor (event) {
+        const editElement = document.querySelector(".modal")
+        const cross = editElement.querySelector(".fa-x")
+        const cancelBtn = editElement.querySelector(".cancelEditBtn")
+        
+        cross.removeEventListener("click",removeTaskEditor)
+        cancelBtn.removeEventListener("click",removeTaskEditor)
 
+        backgroundModal.removeChild(editElement)
+        backgroundModal.style.display = "none"
     }
 
 
@@ -297,7 +343,6 @@ export const render = ((masterObj) => {
     }
 
     function updateTasks(theTask) {
-
         if (masterObj.currentProject == "Home"){
             tasksContainer.innerHTML = ""
             masterObj.tasks.forEach(task => tasksContainer.appendChild(taskDomEvent(task)))

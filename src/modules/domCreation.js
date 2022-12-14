@@ -21,7 +21,7 @@ export function createTaskModal(masterObj){
             </div>
             <div class="taskDetails2">
                 <label for="dueDate">Due Date:</label>
-                <input type="date" class="taskEntry" id="dueDate">
+                <input type="date" min="2000-01-01" max="2999-01-01" class="taskEntry" id="dueDate">
 
                 <label for="priority">Priority:</label>
                 <select id="priority" class="taskEntry">
@@ -144,7 +144,7 @@ export function taskEditor(masterObj,title,description,priority,dueDate,project)
             </div>
             <div class="editDetails2">
                 <label for="dueDate">Due Date:</label>
-                <input type="date" class="taskEntry" id="dueDate">
+                <input type="date" min="2000-01-01" max="2999-01-01" class="taskEntry" id="dueDate">
 
                 <label for="priority">Priority:</label>
                 <select id="priority" class="taskEntry">
@@ -170,13 +170,11 @@ export function taskEditor(masterObj,title,description,priority,dueDate,project)
 
     taskEditor.querySelector("#taskTitle").value = title
     taskEditor.querySelector("#taskDescription").value = description
-
-    console.log(`20${dueDate.split("/").reverse()}"`.replace(/,/g,"-"))
-    
-    taskEditor.querySelector("#dueDate").value = dueDate=="not due"?"":`20${dueDate.split("/").reverse()}`.replace(/,/g,"-")
-    const prioritySelector = taskEditor.querySelector("#priority");
-    ([...prioritySelector.children].find(thepriority=>thepriority.value == priority)).selected = true;
-    
+    taskEditor.querySelector("#dueDate").value = dueDate=="not due"?
+        "":`20${dueDate.split("/").reverse()}`.replace(/,/g,"-");
+        
+    ([...taskEditor.querySelector("#priority").children].find(
+        thepriority=>thepriority.value == priority)).selected = true;
 
     //project selection
     const projectSelector = taskEditor.querySelector("#projectSelection")
