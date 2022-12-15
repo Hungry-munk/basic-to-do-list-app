@@ -32,10 +32,6 @@ searchBar.addEventListener("focusout",e=>{
     searchBar.value=""
     UI.render.searchedTasks()
 })
-
-// window.addEventListener("resize",e =>
-//     sideBar.style.height = `${main.scrollHeight}px`)
-// other
+// starting out
 UI.addProjects(...str.masterObject.projects)
 UI.render.homeTasks(homeBtn)
-// adding task counter 
