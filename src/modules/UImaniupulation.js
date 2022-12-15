@@ -3,7 +3,6 @@ import * as func from "./function"
 import * as bundle from "./functionBundler"
 import * as str from "./storage"
 import { isToday, isThisWeek } from "date-fns"
-import { task } from "./classes"
 
 export function displayMenu() {
     const main = document.querySelector("main#main")
@@ -13,7 +12,7 @@ export function displayMenu() {
 
 export function displayProjects(event) {
     const dropDown = document.querySelector(".dropDown")
-    const caretSymbol = event.target.children[0]
+    const caretSymbol = document.querySelector('#caret')
     if (dropDown.style.display == "none") {
         dropDown.style.display = "flex"
         caretSymbol.classList.toggle("fa-caret-down")
@@ -114,19 +113,19 @@ export function removeProject(event) {
     const removedProjectIndex = str.masterObject.projects.indexOf(this)
 
     if (removedProjectIndex != -1) {
-        str.masterObject.projects.splice(removedProjectIndex,1)
-        event.target.removeEventListener('click',removeProject.bind(this))
+        str.masterObject.projects.splice(removedProjectIndex, 1)
+        event.target.removeEventListener('click', removeProject.bind(this))
         // removing it from DOM
         const projects = document.querySelector(".projects")
         const removedProject = event.target.parentElement
-        if (this.title = str.masterObject.currentProject){
+        if (this.title = str.masterObject.currentProject) {
             render.homeTasks(event);
-            changeActivatedProject("Home",document.querySelector(".fa-solid"))
+            changeActivatedProject("Home", document.querySelector(".fa-solid"))
         }
         projects.removeChild(removedProject)
 
         // save changes
-        str.saveMasterObject() 
+        str.saveMasterObject()
     }
 
 
@@ -134,7 +133,7 @@ export function removeProject(event) {
 }
 
 export function changeActivatedProject(projectName, element) {
-    const activatedProject = document.querySelector(".active") ? 
+    const activatedProject = document.querySelector(".active") ?
         document.querySelector(".active") : element
     activatedProject.classList.remove("active")
     str.masterObject.changeCurrentProject(projectName)
@@ -163,7 +162,7 @@ export function projectTaskCounter(event) {
 }
 // task chaning module
 
-function taskDomEvent(task){
+function taskDomEvent(task) {
     const taskElement = task.taskHTML
     // manipulation features
     const binBtn = taskElement.querySelector(".bin")
@@ -171,30 +170,30 @@ function taskDomEvent(task){
     const editBtn = taskElement.querySelector(".edit")
     const taskDetailsbtn = taskElement.querySelector(".taskDetails")
     //  event listeners
-    binBtn.addEventListener("click",taskManipulation.deleteTask.bind(task))
-    taskDetailsbtn.addEventListener("click",taskManipulation.viewDetails.bind(task))
-    squareBtn.addEventListener("click",taskManipulation.changeTaskStatus.bind(task))
-    editBtn.addEventListener("click",taskManipulation.viewTaskEditor.bind(task))
+    binBtn.addEventListener("click", taskManipulation.deleteTask.bind(task))
+    taskDetailsbtn.addEventListener("click", taskManipulation.viewDetails.bind(task))
+    squareBtn.addEventListener("click", taskManipulation.changeTaskStatus.bind(task))
+    editBtn.addEventListener("click", taskManipulation.viewTaskEditor.bind(task))
 
     return taskElement
 }
 
-export const taskManipulation = (()=>{
+export const taskManipulation = (() => {
     const tasksContainer = document.querySelector(".tasks")
     const backgroundModal = document.querySelector("#modalBackground")
 
-    function deleteTask (event) {
+    function deleteTask(event) {
         const taskElement = event.target.parentElement
-        const taskProject = str.masterObject.projects.find(project=>
+        const taskProject = str.masterObject.projects.find(project =>
             project.tasks.includes(this));
-        taskProject.tasks.splice(taskProject.tasks.indexOf(this),1)
+        taskProject.tasks.splice(taskProject.tasks.indexOf(this), 1)
         tasksContainer.removeChild(taskElement)
         event.target.removeEventListener("click", taskManipulation.deleteTask)
         render.updateTasks(this)
         str.saveMasterObject()
     }
 
-    function editTask (event) {
+    function editTask(event) {
         const title = document.querySelector("#taskTitle").value
         const description = document.querySelector("#taskDescription").value
         const priority = document.querySelector("#priority").value
@@ -207,29 +206,29 @@ export const taskManipulation = (()=>{
         if (!taskNameInfo.validity) {
             const errorMsg = document.querySelector("span.errorMsg")
             errorMsg.textContent = taskNameInfo.message;
-            setTimeout(()=>{errorMsg.textContent=""},1200)
+            setTimeout(() => { errorMsg.textContent = "" }, 1200)
             return
         }
 
         if (this.project != project) {
-            const currentProject = str.masterObject.projects.find(theProject=>theProject.title == this.project);
-            const movingProject = str.masterObject.projects.find(theProject=> theProject.title ==project)
-            currentProject.tasks.splice(currentProject.tasks.indexOf(this),1)
+            const currentProject = str.masterObject.projects.find(theProject => theProject.title == this.project);
+            const movingProject = str.masterObject.projects.find(theProject => theProject.title == project)
+            currentProject.tasks.splice(currentProject.tasks.indexOf(this), 1)
             movingProject.tasks.push(this)
         }
-        
+
         this.title = title
         this.description = description
         this.priority = priority
         this.dueDate = useableDate
-        
+
         render.updateTasks(this)
         this.project = project
         str.saveMasterObject()
         removeTaskEditor()
     }
 
-    function viewDetails (event) {
+    function viewDetails(event) {
         if (backgroundModal.childNodes.length > 0) return
         const detailsELement = creation.createDetailsModal(
             this.title,
@@ -249,8 +248,8 @@ export const taskManipulation = (()=>{
 
     function removeViewDetails() {
         const modal = this.parentElement.parentElement
-        
-        this.removeEventListener("click",removeViewDetails)
+
+        this.removeEventListener("click", removeViewDetails)
 
         backgroundModal.removeChild(modal)
         backgroundModal.style.display = "none"
@@ -263,7 +262,7 @@ export const taskManipulation = (()=>{
         str.saveMasterObject()
     }
 
-    function viewTaskEditor (event) {
+    function viewTaskEditor(event) {
         const editElement = creation.taskEditor(
             str.masterObject,
             this.title,
@@ -276,22 +275,22 @@ export const taskManipulation = (()=>{
         const cancelBtn = editElement.querySelector(".cancelEditBtn")
         const editTaskBtn = editElement.querySelector(".editTaskBtn")
 
-        cross.addEventListener("click",removeTaskEditor)
-        cancelBtn.addEventListener("click",removeTaskEditor)
-        editTaskBtn.addEventListener("click",editTask.bind(this))
+        cross.addEventListener("click", removeTaskEditor)
+        cancelBtn.addEventListener("click", removeTaskEditor)
+        editTaskBtn.addEventListener("click", editTask.bind(this))
 
         backgroundModal.appendChild(editElement)
         backgroundModal.style.display = "flex"
 
     }
 
-    function removeTaskEditor (event) {
+    function removeTaskEditor(event) {
         const editElement = document.querySelector(".modal")
         const cross = editElement.querySelector(".fa-x")
         const cancelBtn = editElement.querySelector(".cancelEditBtn")
-        
-        cross.removeEventListener("click",removeTaskEditor)
-        cancelBtn.removeEventListener("click",removeTaskEditor)
+
+        cross.removeEventListener("click", removeTaskEditor)
+        cancelBtn.removeEventListener("click", removeTaskEditor)
 
         backgroundModal.removeChild(editElement)
         backgroundModal.style.display = "none"
@@ -369,7 +368,7 @@ export const render = ((masterObj) => {
     }
 
     function updateTasks(theTask) {
-        if (masterObj.currentProject == "Home"){
+        if (masterObj.currentProject == "Home") {
             tasksContainer.innerHTML = ""
             masterObj.tasks.forEach(task => tasksContainer.appendChild(taskDomEvent(task)))
         }
@@ -377,16 +376,16 @@ export const render = ((masterObj) => {
             tasksContainer.innerHTML = ""
             masterObj.projects.find(project => project.title == theTask.project
             ).tasks.forEach(task => tasksContainer.appendChild(taskDomEvent(task)));
-        } else if (masterObj.currentProject == "Today" ) {
+        } else if (masterObj.currentProject == "Today") {
             tasksContainer.innerHTML = ""
             masterObj.tasks.forEach(task => {
                 if (isToday(new Date(func.formatDate2(task.dueDate))))
                     tasksContainer.appendChild(taskDomEvent(task));
             });
-        } else if (masterObj.currentProject == "Upcoming" ) {
+        } else if (masterObj.currentProject == "Upcoming") {
             tasksContainer.innerHTML = ""
-            masterObj.tasks.forEach(task=>{
-                if (isThisWeek(new Date(func.formatDate2(task.dueDate)))) 
+            masterObj.tasks.forEach(task => {
+                if (isThisWeek(new Date(func.formatDate2(task.dueDate))))
                     tasksContainer.appendChild(taskDomEvent(task));
             });
         } else if (masterObj.currentProject == "Completed") {

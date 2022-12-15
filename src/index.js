@@ -12,6 +12,7 @@ const homeBtn = document.querySelector(".home")
 const todayBtn = document.querySelector(".today")
 const upcomingBtn = document.querySelector(".upcoming")
 const completedBtn = document.querySelector(".completed")
+const caretIcon = document.querySelector("caret")
 const allProjects = [...document.querySelectorAll("li")]
 // event listeners
 menuIcon.addEventListener("click" , UI.displayMenu)
