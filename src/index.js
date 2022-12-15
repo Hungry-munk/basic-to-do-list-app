@@ -14,6 +14,7 @@ const upcomingBtn = document.querySelector(".upcoming")
 const completedBtn = document.querySelector(".completed")
 const caretIcon = document.querySelector("caret")
 const allProjects = [...document.querySelectorAll("li")]
+const searchBar = document.querySelector("#search")
 // event listeners
 menuIcon.addEventListener("click" , UI.displayMenu)
 projectsDropdown.addEventListener("click", UI.displayProjects)
@@ -26,8 +27,11 @@ upcomingBtn.addEventListener("click",UI.render.weekTasks)
 completedBtn.addEventListener("click",UI.render.completedTasks)
 allProjects.forEach(project=>
     project.addEventListener("mouseenter",UI.updateDefualtTaskCounters));
-
-
+searchBar.addEventListener("keyup",UI.render.searchedTasks)
+searchBar.addEventListener("focusout",e=>{
+    searchBar.value=""
+    UI.render.searchedTasks()
+})
 
 // window.addEventListener("resize",e =>
 //     sideBar.style.height = `${main.scrollHeight}px`)

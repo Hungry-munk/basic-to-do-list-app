@@ -396,6 +396,18 @@ export const render = ((masterObj) => {
             })
         }
     }
+
+    function searchedTasks() {
+        // making all hidden ones visible
+        [...tasksContainer.querySelectorAll('.task[style*="none"]')].forEach(hiddentTask=>
+            hiddentTask.style.display = "flex");
+        // making all the ones to be hidden actually hidden
+        ([...tasksContainer.children].forEach(task=>{
+            const taskTitle = task.querySelector(".taskTitle").textContent
+            const searchBar = document.querySelector("#search")
+            if (!taskTitle.includes(searchBar.value)) task.style.display = "none"
+        }));
+    }
     return {
         homeTasks,
         todayTasks,
@@ -403,6 +415,7 @@ export const render = ((masterObj) => {
         completedTasks,
         projectTasks,
         updateTasks,
+        searchedTasks,
 
     }
 })(str.masterObject)
